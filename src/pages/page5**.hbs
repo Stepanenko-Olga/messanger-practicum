@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">    
-    <title>Page 5**</title>
-</head>
-<body>
-      <h1>Ошибка сервера</h1>
-    <a href="../../index.hbs">Home</a>
-</body>
-</html>
+---
+errorCode: "500"
+errorMessage: "Мы уже фиксим"
+url: "./chats.hbs"
+title: Назад к чатам
+
+---
+
+<link rel="stylesheet" href="../static/styles/index.pcss"/>
+<box class="container">    
+    <box>
+    {{> errorBlock errorCode=errorCode errorMessage=errorMessage}}    
+    {{> link url=url title=title}}  
+    </box>      
+</box>
