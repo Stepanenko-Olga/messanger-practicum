@@ -1,15 +1,24 @@
----
-name: Olga
----
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">    
-    <title>Document</title>
+    <title>Messanger</title>
+    <link rel="stylesheet" href="./src/static/styles/index.pcss"/>    
 </head>
 <body>
-    Hello, {{ name }}!
-    <a href="profile.hbs">Profile</a>
+    <div class="container">
+    
+    <box><h1>Список страниц</h1>
+    <ul>
+    <li>{{> link url="./src/pages/profile.hbs" title="Профиль пользователя"}}</li>
+    <li>{{> link url="./src/pages/registration.hbs" title="Регистрация"}}</li>  
+    <li>{{> link url="./src/pages/authorization.hbs" title="Авторизация"}}</li>
+    <li>{{> link url="./src/pages/chats.hbs" title="Messanger"}}</li>    
+    <li>{{> link url="./src/pages/page404.hbs" title="Page 404"}}</li>     
+    <li>{{> link url="./src/pages/page5**.hbs" title="Page 5**"}}</li>   
+    </ul>
+    </box>
 </body>
 </html>
