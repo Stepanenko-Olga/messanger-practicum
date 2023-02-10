@@ -1,8 +1,11 @@
+<link rel="stylesheet" href="../static/styles/index.pcss"/> 
 <box class="profile">
 <div class="profile__ava">
     Поменять аватар</div>
 <div class="profile__name">{{profileName}}</div>
-<div class="profile__infoBlock"></div>
+<div class="profile__infoBlock">
+    {{> profileRow title="Почта" value="pochta@yandex.ru"}}
+</div>
 <div class="profile__editBlock">Редактирование</div>
-{{> link url="../pages/chats.hbs" title="Выйти" color="red"}} 
+{{> link url="../pages/chats.hbs" title="Выйти"}} 
 </box>
