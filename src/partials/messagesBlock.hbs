@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="../static/styles/index.pcss"/> 
 <box class="messages">
-Выберите чат, чтобы отправить сообщение
+<div class="messages__header">
+    {{> messagesHeader name="Вадим"}}
+</div>
+<div class="messages__body">Здесь пока ничего нет</div>
+<div class="messages__footer">
+    <input class="messages__footer_input" placeholder="Сообщение" name="message"/>
+    <div class="messages__footer_enter"></div>
+</div>
 </box>

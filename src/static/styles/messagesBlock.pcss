@@ -2,10 +2,72 @@
     height: 100%;   
     width: 75%; 
     display: flex;
+    flex-direction: column;
+    padding: 20px 10px 20px 10px;
+   
+}
+
+.messages__header {
+  height: 54px;
+  line-height: 54px;
+  border-bottom: solid #eaeaea 1px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  
+}
+
+.messages__header_name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+    
+  }
+
+.messages__body {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    position: fixed;
     align-items: center;
-    align-content: center;
-    justify-content: center;   
+    align-content: center; 
+    justify-content: center;
+    text-align: center;    
     color: #999999;
     font-size: 12px;
     font-weight: 500; 
+}
+
+.messages__footer {
+    height: 32px;    
+    position: absolute;
+    bottom: 0;
+    border-top: solid #eaeaea 1px;
+    display: flex;
+    flex-direction: row;
+    width: 75%; 
+    padding: 11px 0px 11px 0px;
+}
+
+.messages__footer_input {     
+   background: #efefef;
+   border: none;
+   border-radius: 30px;
+   margin-right: 10px;
+   color: #999999;
+   font-size: 12px;
+   font-weight: 500;
+   width: 93%;   
+
+}
+
+.messages__footer_enter {
+    height: 28px;
+    width: 28px; 
+    margin: 2px 0px 2px 0px; 
+    line-height: 28px;  
+    background: #3369f3;
+    border-radius: 50%;
+    color: #ffffff;
+    width: 3%;
 }
