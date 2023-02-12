@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="../static/styles/index.pcss"/> 
+<box class="profile">
+<div class="profile__ava">
+    <span>Поменять аватар</span>
+</div>
+<div class="profile__infoBlock">
+    {{> editRow title="Почта" placeholder="pochta@yandex.ru" type="text" name="email"}}
+    {{> editRow title="Логин" placeholder="ivanivanov" type="text" name="login"}}
+    {{> editRow title="Имя" placeholder="Иван" type="text" name="first_name"}}
+    {{> editRow title="Фамилия" placeholder="Иванов" type="text" name="second_name"}}
+    {{> editRow title="Имя в чате" placeholder="Иван" type="text" name="display_name"}}
+    {{> editRow title="Телефон" placeholder="+7 910 123 45 67" type="text" name="phone"}}
+</div>
+<button class="btn">Сохранить</button>
+</box>
