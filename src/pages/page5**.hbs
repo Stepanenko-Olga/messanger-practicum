@@ -1,0 +1,15 @@
+---
+errorCode: "500"
+errorMessage: "Мы уже фиксим"
+url: "./chats.hbs"
+title: Назад к чатам
+
+---
+
+<link rel="stylesheet" href="../static/styles/index.pcss"/>
+<box class="container">    
+    <box>
+    {{> errorBlock errorCode=errorCode errorMessage=errorMessage}}    
+    {{> link url=url title=title}}  
+    </box>      
+</box>
