@@ -1,40 +1,48 @@
 .form {        
-    font-family: Inter Medium;    
+    font-family: 'Inter Medium', sans-serif;    
     position: relative;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px #000;        
     border-radius: 12px;
     padding: 30px;      
 }
 
+
 .form__title {
     font-weight: 500;
     font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 40px;    
-    position: relative;
-    margin-right: auto;
-    margin-left: auto;   
+    margin: 20px auto 40px;    
+    position: relative;     
 }
 
-.form__Input {    
+.form__fields{
+    margin-bottom: 50px;
+}
+
+
+.form__input {    
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: space-between;    
-    width: 280px;      
+    justify-content: space-between;   
+      
 }
 
-.form__Input_label {    
+.form__submit{
+    margin-bottom: 25px;
+}
+
+.form__input-label {    
     text-align: left;
-    color: $base-white;
-    font-size: 9px;
-    margin-bottom: 8px;    
+    color: #000;
+    font-size: 9px; 
 }
 
-.form__Input_field {    
-    text-align: left;   
+.form__input-field {    
+    text-align: right;   
     font-size: 13px;
     border: none;
-    border-bottom: solid $primary 1px;
-    margin-bottom: 16px;
+    border-bottom: solid #3369fe 1px;
+    margin-bottom: 8px;
 }
+
+
