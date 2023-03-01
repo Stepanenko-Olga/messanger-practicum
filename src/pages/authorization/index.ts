@@ -3,8 +3,9 @@ import Block from '../../utils/Block';
 import { Button } from '../../components/button';
 import { Link } from '../../components/link';
 import { renderDOM } from '../../utils/renderDOM';
-import { printValues, validate } from '../../utils/formUtils';
+import { printValues} from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
+import { submitValidation } from '../../utils/validation';
 
 export class Authorization extends Block {
   constructor() {
@@ -12,26 +13,23 @@ export class Authorization extends Block {
     this.setProps({       
       events: {
          submit: (event: Event) => {event.preventDefault(); 
-          validate(this.children);         
+          submitValidation(this.children);         
           printValues(this.children);}
        },     
      })
-  }  
- 
+  }   
 
   init() {
     this.element?.classList.add('container');      
     this.children.login = new FormField({label: 'Логин',          
       name: 'login',
       value: 'ivanivanov',
-      type: 'text', 
-      errorText: "",
-  validationType: "login"})   
+      type: 'text',      
+      validationType: "login"})   
     this.children.password = new FormField({ label: 'Пароль',
       name: 'password',
       value: '******',
-      type: 'password', 
-      errorText: 'Некорректная длина символов',
+      type: 'password',      
       validationType: "password"});    
     this.children.button = new Button({
       title: 'Войти'    
