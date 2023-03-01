@@ -2,7 +2,8 @@ import { nanoid } from 'nanoid';
 import { EventBus } from './EventBus';
 
 // Нельзя создавать экземпляр данного класса
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", "componentDidUpdate", "render", "_createDocumentElement"] }] */
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
+"componentDidUpdate", "render", "_createDocumentElement"] }] */
 class Block {
   static EVENTS = {
     INIT: 'init',
