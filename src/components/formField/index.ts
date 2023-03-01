@@ -4,7 +4,8 @@ import { FormFieldProps } from './types';
 import { FormFieldLabel } from '../formFieldLabel';
 import { FormFieldInput } from '../formFieldInput';
 import { ErrorMessage } from '../errorMessage';
-import { validationMasks } from '../formFieldInput/consts';
+import { validationMasks } from '../formFieldInput/const';
+
 
 
 export class FormField extends Block {

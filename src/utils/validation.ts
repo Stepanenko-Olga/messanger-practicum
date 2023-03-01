@@ -1,24 +1,43 @@
 import { FormField } from "../components/formField";
 import { FormFieldInput } from "../components/formFieldInput";
+import { validationMasks } from "../components/formFieldInput/const";
+
 import Block from "./Block";
 
-export const printValues = (props: Record<string, Block>) => {
-  let fields: FormField[] = [];   
-  let inputs: FormFieldInput[] = [];  
-    const formData: Record<string,string>[] = [];    
+export const submitValidation = (props: Record<string, Block>) => {
+    let fields: FormField[] = [];        
     Object.values(props).forEach((child) => {
       if (child instanceof FormField) 
       fields.push(child);
     });
     Object.values(fields).forEach((field) =>{     
-      Object.values(field.children).forEach((child) => {
-      if (child instanceof FormFieldInput) inputs.push(child);})
-    }); 
-      for (var i=0; i<inputs.length; i++ ) {
-        let form: Record<string,string>= {};
-        form[inputs[i].name]=inputs[i].value;
-        formData.push(form);    
-        }   
-      console.log(formData);
-    }
+      checkValidation(field)
+    });       
+  }
+
+
+  function checkValidation(field: FormField) {  
+    switch((field.children.input as FormFieldInput).validationType) {
+      case "login": validationMasks.LOGIN.test((field.children.input as FormFieldInput).value) 
+      ? field.children.error.setProps({title: undefined}) 
+      : field.children.error.setProps({title: "Поле содержит недопустимые символы"}); break;
+
+      case "password": validationMasks.PASSWORD.test((field.children.input as FormFieldInput).value) 
+      ? field.children.error.setProps({title: undefined}) 
+      : field.children.error.setProps({title: "Поле содержит недопустимые символы"}); break;
+
+      case "name": validationMasks.NAME.test((field.children.input as FormFieldInput).value) 
+      ? field.children.error.setProps({title: undefined}) :
+       field.children.error.setProps({title: "Поле содержит недопустимые символы"}); break;
+
+      case "email": validationMasks.EMAIL.test((field.children.input as FormFieldInput).value) 
+      ? field.children.error.setProps({title: undefined}) 
+      : field.children.error.setProps({title: "Поле содержит недопустимые символы"}); break;
+
+      case "phone": validationMasks.PHONE.test((field.children.input as FormFieldInput).value) 
+      ? field.children.error.setProps({title: undefined}) 
+      : field.children.error.setProps({title: "Поле содержит недопустимые символы"}); break;
+    }       
+  }
+
   
