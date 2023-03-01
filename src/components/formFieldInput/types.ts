@@ -4,5 +4,6 @@ export interface FormFieldInputProps {
     value?: string;
     placeholder?: string; 
     validationType?: string; 
-    errorText?: string;     
+    errorText?: string;      
+    events?: {};      
   }
