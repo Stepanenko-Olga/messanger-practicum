@@ -1,6 +1,5 @@
 import Block from '../../../utils/Block';
 import template from './messagesBlock.hbs';
-import { MessagesBody } from './messagesBody';
 import { messageAnother, messageMy } from './consts';
 
 import { MessagesFooter } from './messagesFooter';
@@ -20,12 +19,7 @@ export class MessagesBlock extends Block {
     this.children.messagesHeader = new MessagesHeader({
       name: 'Вадим',
       avatar: 'ava',
-    });
-    this.children.messagesBody = new MessagesBody({
-      date: '01 марта',
-      messagesMyText: messageMy.text,
-      messagesAnotherText: messageAnother.text,
-    });
+    });   
     this.children.messagesFooter = new MessagesFooter({});
   }
 
