@@ -4,6 +4,7 @@ import { FormFieldProps } from './types';
 import { FormFieldLabel } from '../formFieldLabel';
 import { FormFieldInput } from '../formFieldInput';
 import { ErrorMessage } from '../errorMessage';
+import { validationMasks } from '../formFieldInput/consts';
 
 
 export class FormField extends Block {
@@ -28,12 +29,31 @@ export class FormField extends Block {
       value: this.props.value,
       type: this.props.type, 
       errorText: this.props.errorText,
-      validationType: this.props.validationType    
+      validationType: this.props.validationType,
+      events: {
+        focus: () => {this.checkValidation(this.props.validationType);},  
+        blur: () => {this.checkValidation(this.props.validationType);}, 
+               
+      },   
     });
     this.children.error = new ErrorMessage({title: this.props.errorText});  
   } 
   
+  checkValidation(validationType: string) {  
+    switch(validationType) {
+      case "login": this.validate(validationMasks.LOGIN); break;
+      case "password": this.validate(validationMasks.PASSWORD); break;
+      case "name": this.validate(validationMasks.NAME); break;
+      case "email": this.validate(validationMasks.EMAIL); break;
+      case "phone": this.validate(validationMasks.PHONE); break;
+    }       
+  }
 
+  validate(mask: RegExp) {
+    mask.test((this.children.input as FormFieldInput).value) 
+    ? this.children.error.setProps({title: undefined}) 
+    : this.children.error.setProps({title: "Поле содержит недопустимые символы"});
+  }
 
   render() {  
  
