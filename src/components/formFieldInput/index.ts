@@ -1,19 +1,20 @@
-import  template  from './formFieldInput.hbs';
+import template from './formFieldInput.hbs';
 import Block from '../../utils/Block';
 import { FormFieldInputProps } from './types';
 import { ErrorMessage } from '../errorMessage';
 
 export class FormFieldInput extends Block {
   constructor(props: FormFieldInputProps) {
-    super('input', props);     
-  }   
+    super('input', props);
+  }
 
   init() {
     this.element?.classList.add('form__input-field');
-    this.children.error = new ErrorMessage({title: this.props.errorText})  
-  }  
+    this.element?.setAttribute("name", this.props.name);
+    this.children.error = new ErrorMessage({ title: this.props.errorText })
+  }
 
-  
+
   get value() {
     return (this.element as HTMLInputElement).value;
   }
@@ -27,7 +28,7 @@ export class FormFieldInput extends Block {
   }
 
 
-  render() {    
+  render() {
     return this.compile(template, this.props);
   }
 }
