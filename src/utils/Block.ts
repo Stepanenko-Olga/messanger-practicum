@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from './EventBus';
 
-// Нельзя создавать экземпляр данного класса
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
 "componentDidUpdate", "render", "_createDocumentElement"] }] */
-class Block {
+
+
+abstract class Block<Props extends Record<string, unknown> = Record<string, unknown>> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,10 +15,10 @@ class Block {
 
   public id = nanoid(6);
 
-  protected props: any;
+  protected props: Props;
 
   // eslint-disable-next-line no-use-before-define
-  public children: Record<string, Block>;
+  public children: Record<string, Block<Props>>;
 
   private eventBus: () => EventBus;
 
@@ -53,7 +54,7 @@ class Block {
 
   _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block<Props>> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -67,7 +68,7 @@ class Block {
   }
 
   _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () =>void> };
+    const { events = {} } = this.props as unknown as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
@@ -94,13 +95,13 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {}
+  protected init() { }
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
