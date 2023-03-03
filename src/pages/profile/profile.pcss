@@ -1,3 +1,5 @@
+@import url("../../static/styles/consts.pcss");
+
 .profile {        
     font-family: 'Inter Medium', sans-serif;
     width: 520px;
@@ -13,16 +15,16 @@
     margin-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
-    background: #efefef;
-    color: #efefef;   
+    background: $base-grey;
+    color: $base-grey;   
     line-height: 130px; 
     font-size: 13px;    
 }
 
 .profile__ava:hover {
-    background: #000;
+    background: $base-black;
     opacity: 0.5;
-    color: #999;
+    color: $text-grey;
     cursor:pointer;
 }
 
@@ -46,7 +48,7 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    border-bottom: solid #EAEAEA 1px;
+    border-bottom: solid $border-grey 1px;
 }
 
 .profile__info-row-title {    
@@ -56,7 +58,7 @@
 
 .profile__info-row-value {    
     text-align: right;    
-    color: #999;
+    color: $text-grey;
 }
 
 .profile__link {  
@@ -69,8 +71,8 @@
     font-size: 13px;
     display: flex;    
     width: 100%;    
-    border-bottom: solid #EAEAEA 1px;
-    color: #3369fe;    
+    border-bottom: solid $border-grey 1px;
+    color: $primary;    
     text-decoration: none;
     text-align: left;   
 }
@@ -81,8 +83,8 @@
         font-size: 13px;
         display: flex;    
         width: 100%;    
-        border-bottom: solid #EAEAEA 1px;
-        color: #f00000;    
+        border-bottom: solid $border-grey 1px;
+        color: $text-red;    
         text-decoration: none;
         text-align: left;     
 }

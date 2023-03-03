@@ -1,5 +1,7 @@
+@import url("../../../static/styles/consts.pcss");
+
 .chats {
-    background: #e5e5e5;
+    background: $light-grey;
     height: 100%;
     width: 25%;     
     display: flex;
@@ -9,7 +11,7 @@
 .chats__profile-link {
     font-size: 12px;
     font-weight: 500;    
-    color: #999;    
+    color: $text-grey;    
     text-decoration: none;
     text-align: right;
     margin: 12px 10px 10px auto; 
@@ -17,8 +19,8 @@
 
 .chats__search {
     margin: 14px 10px;
-    background: #efefef;
-    color: #999; 
+    background: $base-grey;
+    color: $text-grey; 
     border-radius: 5px;
     border: none;
     height: 32px;
@@ -34,8 +36,8 @@
 .chats__list-card {
    width: 100%;
    padding: 12px 0;
-   border-top: solid #eaeaea 1px;
-   border-bottom: solid #eaeaea 1px; 
+   border-top: solid $border-grey 1px;
+   border-bottom: solid $border-grey 1px; 
    display: flex;
    flex-direction: row;   
 }
@@ -50,7 +52,7 @@
     height: 47px;
     position: relative;     
     border-radius: 50%;          
-    background: #efefef;    
+    background: $base-grey;    
     line-height: 47px;
     overflow: hidden;      
 }
@@ -71,7 +73,7 @@
 .chats__list-card-text {
     font-size: 12px;
     font-weight: 500;
-    color: #999;
+    color: $text-grey;
 }
 
 .chats__list-card-info {
@@ -81,18 +83,18 @@
 .chats__list-card-time {
     font-size: 9px;
     font-weight: 500;
-    color: #999;
+    color: $text-grey;
 }
 
 .chats__list-card-count {
     font-size: 11px;
     font-weight: 500;
-    color: base-white;
+    color: $base-white;
     width: 20px;
     height: 20px;
     line-height: 20px;
     border-radius: 50%;
-    background: #3369fe;
+    background: $primary;
     margin-bottom: 0;
     margin-top: auto;
 }
