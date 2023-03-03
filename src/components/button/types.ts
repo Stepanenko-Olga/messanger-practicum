@@ -1,6 +1,8 @@
 export interface ButtonProps {
-    title: string;  
+    title: string;
+    type?: string;
     events?: {
         click: (event: Event) => void;
     }
-  }
+}
+
