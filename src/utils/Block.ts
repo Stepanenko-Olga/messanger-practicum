@@ -67,11 +67,20 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
     return { props, children };
   }
 
-  _addEvents() {
+  _addEvents(): void {
     const { events = {} } = this.props as unknown as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
+      console.log(this);
+    });
+  }
+
+  _removeEvents(): void {
+    const { events = {} } = this.props as unknown as { events: Record<string, () => void> };
+    if (!events) return;
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
     });
   }
 
