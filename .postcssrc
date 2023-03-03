@@ -1,6 +1,7 @@
 {
     "plugins": {
         "postcss-import": true,
-        "precss": true
+        "precss": true,
+        "postcss-simple-vars": true
     }
 }
