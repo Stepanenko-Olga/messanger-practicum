@@ -12,8 +12,8 @@ export class EditInfo extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          submitValidation(this.children);
-          printValues(this.children);
+          submitValidation(this.children as Record<string, Block>);
+          printValues(this.children as Record<string, Block>);
         }
       },
     })

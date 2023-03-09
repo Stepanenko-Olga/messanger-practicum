@@ -1,6 +1,6 @@
 export interface ProfileLinkRowProps {
-    title: string;
-    events: {
-      click: () => void;
-  }
-  }
+  title: string;
+  events: {
+    click: () => void;
+  };
+}

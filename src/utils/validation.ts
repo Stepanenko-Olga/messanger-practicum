@@ -19,24 +19,24 @@ export const submitValidation = (props: Record<string, Block>) => {
 function checkValidation(field: FormField) {
   switch ((field.children.input as FormFieldInput).validationType) {
     case "login": validationMasks.LOGIN.test((field.children.input as FormFieldInput).value)
-      ? field.children.error.setProps({ title: undefined })
-      : field.children.error.setProps({ title: "Поле содержит недопустимые символы" }); break;
+      ? (field.children.error as Block).setProps({ title: undefined })
+      : (field.children.error as Block).setProps({ title: "Поле содержит недопустимые символы" }); break;
 
     case "password": validationMasks.PASSWORD.test((field.children.input as FormFieldInput).value)
-      ? field.children.error.setProps({ title: undefined })
-      : field.children.error.setProps({ title: "Поле содержит недопустимые символы" }); break;
+      ? (field.children.error as Block).setProps({ title: undefined })
+      : (field.children.error as Block).setProps({ title: "Поле содержит недопустимые символы" }); break;
 
     case "name": validationMasks.NAME.test((field.children.input as FormFieldInput).value)
-      ? field.children.error.setProps({ title: undefined }) :
-      field.children.error.setProps({ title: "Поле содержит недопустимые символы" }); break;
+      ? (field.children.error as Block).setProps({ title: undefined })
+      : (field.children.error as Block).setProps({ title: "Поле содержит недопустимые символы" }); break;
 
     case "email": validationMasks.EMAIL.test((field.children.input as FormFieldInput).value)
-      ? field.children.error.setProps({ title: undefined })
-      : field.children.error.setProps({ title: "Поле содержит недопустимые символы" }); break;
+      ? (field.children.error as Block).setProps({ title: undefined })
+      : (field.children.error as Block).setProps({ title: "Поле содержит недопустимые символы" }); break;
 
     case "phone": validationMasks.PHONE.test((field.children.input as FormFieldInput).value)
-      ? field.children.error.setProps({ title: undefined })
-      : field.children.error.setProps({ title: "Поле содержит недопустимые символы" }); break;
+      ? (field.children.error as Block).setProps({ title: undefined })
+      : (field.children.error as Block).setProps({ title: "Поле содержит недопустимые символы" }); break;
   }
 }
 
