@@ -1,6 +1,6 @@
 import Block from '../../../utils/Block';
 import { MessagesBody } from './messageBody';
-import { messageAnother, messageMy } from './messageBody/consts';
+import { messages } from './messageBody/consts';
 import template from './messagesBlock.hbs';
 
 
@@ -13,7 +13,7 @@ export class MessagesBlock extends Block {
   constructor() {
     super('box');
   }
-     
+
 
 
   init() {
@@ -24,8 +24,7 @@ export class MessagesBlock extends Block {
     });
     this.children.messagesBody = new MessagesBody({
       date: '01 марта',
-      messagesMyText: messageMy.text,
-      messagesAnotherText: messageAnother.text,
+      messages: [...messages]
     });
     this.children.messagesFooter = new MessagesFooter({});
   }

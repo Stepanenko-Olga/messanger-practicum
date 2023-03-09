@@ -1,7 +1,6 @@
 export interface MessagesBodyProps {
   date: string;
-  messagesMyText?: string | string[];
-  messagesAnotherText?: string | string[];
+  messages: MessageProps[];
 }
 
 
@@ -10,5 +9,5 @@ export interface MessageProps {
   time?: string;
   text: string;
   img?: string;
-  type?: string;
+  type: string;
 }

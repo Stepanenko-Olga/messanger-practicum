@@ -18,7 +18,7 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
   protected props: Props;
 
   // eslint-disable-next-line no-use-before-define
-  public children: Record<string, Block<Props>>;
+  public children: Record<string, Block<Props> | Block<Props>[]>;
 
   private eventBus: () => EventBus;
 
@@ -54,10 +54,13 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
 
   _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
-    const children: Record<string, Block<Props>> = {};
+    const children: Record<string, Block<Props> | Block<Props>[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (Array.isArray(value) && value.every(el => el instanceof Block)) {
+        children[key] = value;
+      }
+      else if (value instanceof Block) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -115,7 +118,15 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) =>
+          item.dispatchComponentDidMount())
+
+      } else {
+        child.dispatchComponentDidMount()
+      };
+    });
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -154,7 +165,11 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map(child => `<div data-id="${child.id}"></div>`);
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);
@@ -164,15 +179,30 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
     temp.innerHTML = html;
 
     Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+      if (Array.isArray(component)) {
+        component.forEach(child => {
+          const stub = temp.content.querySelector(`[data-id="${child.id}"]`);
 
-      if (!stub) {
-        return;
+          if (!stub) {
+            return;
+          }
+
+          //component.getContent()?.append(...Array.from(stub.childNodes));
+
+          stub.replaceWith(child.element!);
+
+        })
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+        if (!stub) {
+          return;
+        }
+
+        //component.getContent()?.append(...Array.from(stub.childNodes));
+
+        stub.replaceWith(component.element!);
       }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
     });
 
     return temp.content;

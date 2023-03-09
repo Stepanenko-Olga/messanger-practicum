@@ -1,8 +1,18 @@
-export const messageMy = {
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-};
+import { MessageProps } from "./types";
 
-export const messageAnother = {
+export const messages: MessageProps[] = [{
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    type: "another"
+},
+{
     text: "Полностью согласен",
     type: "my"
-} 
+},
+{
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    type: "another"
+},
+{
+    text: "Полностью согласен",
+    type: "my"
+}]
