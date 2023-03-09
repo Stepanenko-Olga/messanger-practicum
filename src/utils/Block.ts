@@ -75,7 +75,6 @@ abstract class Block<Props extends Record<string, unknown> = Record<string, unkn
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
-      console.log(this);
     });
   }
 

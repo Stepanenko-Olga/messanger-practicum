@@ -4,7 +4,8 @@ import { renderDOM } from '../../../utils/renderDOM';
 import { ChatsProfileLink } from './chatsProfileLink';
 import { ChatsSearch } from './chatsSearch';
 import { ChatsCard } from './chatsCard';
-import img from '../../../static/pic/ava.jpeg';
+import { chartsCards } from './consts';
+
 
 export class ChatsBlock extends Block {
   constructor() {
@@ -23,12 +24,15 @@ export class ChatsBlock extends Block {
       name: 'name',
       placeholder: 'Поиск',
     });
-    this.children.chatsCard = new ChatsCard({
-      img,
-      name: 'Андрей',
-      text: 'Привет! Давай знакомиться',
-      time: '13:45',
-      count: 3,
+    this.children.chatsCards = [];
+    chartsCards.map((card) => {
+      (this.children.chatsCards as Block[]).push(new ChatsCard({
+        img: card.img,
+        name: card.name,
+        text: card.text,
+        time: card.time,
+        count: card.count,
+      }))
     });
   }
 
