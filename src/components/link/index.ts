@@ -19,7 +19,6 @@ class BaseLink extends Block<LinkProps> {
   }
 
   render() {
-    console.log(...this.props.to);
     return this.compile(template, { ...this.props, styles });
   }
 }

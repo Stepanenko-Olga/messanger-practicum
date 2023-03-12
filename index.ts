@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Page500, Page500)
     .use(Routes.Chats, Chats)
 
-  let isProtectedRoute = true;
+  /* let isProtectedRoute = true;
 
   switch (window.location.pathname) {
     case Routes.Home:
@@ -42,22 +42,23 @@ window.addEventListener('DOMContentLoaded', async () => {
       break;
   }
 
-  try {
+  try { */
 
 
-    Router.start();
+  Router.start();
+  Router.go(Routes.Home);
 
 
-    if (!isProtectedRoute) {
-      Router.go(Routes.Home)
-    }
-  } catch (e) {
-    Router.start();
-
-    if (isProtectedRoute) {
-      Router.go(Routes.Home);
-    }
+  /* if (!isProtectedRoute) {
+    Router.go(Routes.Home)
   }
+} catch (e) {
+  Router.start();
+
+  if (isProtectedRoute) {
+    Router.go(Routes.Home);
+  }
+} */
 
 });
 

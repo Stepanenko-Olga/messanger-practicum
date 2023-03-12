@@ -1,10 +1,9 @@
 import template from './chatsBlock.hbs';
 import Block from '../../../utils/Block';
-import { renderDOM } from '../../../utils/renderDOM';
-import { ChatsProfileLink } from './chatsProfileLink';
 import { ChatsSearch } from './chatsSearch';
 import { ChatsCard } from './chatsCard';
 import { chartsCards } from './consts';
+import { Link } from '../../../components/link';
 
 
 export class ChatsBlock extends Block {
@@ -14,10 +13,9 @@ export class ChatsBlock extends Block {
 
   init() {
     this.element?.classList.add('chats');
-    this.children.chatsProfileLink = new ChatsProfileLink({
-      events: {
-        click: () => renderDOM('profile'),
-      },
+    this.children.chatsProfileLink = new Link({
+      title: 'Профиль >',
+      to: '/profile'
     });
     this.children.chatsSearch = new ChatsSearch({
       type: 'text',

@@ -2,7 +2,6 @@ import template from './authorization.hbs';
 import Block from '../../utils/Block';
 import { Button } from '../../components/button';
 import { Link } from '../../components/link';
-import { renderDOM } from '../../utils/renderDOM';
 import { printValues } from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
@@ -44,9 +43,7 @@ export class Authorization extends Block {
     });
     this.children.link = new Link({
       title: 'Нет аккаунта?',
-      events: {
-        click: () => renderDOM('registration'),
-      },
+      to: '/registration'
     });
   }
 

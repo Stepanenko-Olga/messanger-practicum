@@ -4,7 +4,7 @@ import { validationMasks } from "../components/formFieldInput/const";
 
 import Block from "./Block";
 
-export const submitValidation = (props: Record<string, Block>) => {
+export const submitValidation = (props: Record<string, Block | Block[]>) => {
   let fields: FormField[] = [];
   Object.values(props).forEach((child) => {
     if (child instanceof FormField)
