@@ -1,4 +1,4 @@
-import { Profile } from '../pages/profile';
+/* import { Profile } from '../pages/profile';
 import { Authorization } from '../pages/authorization';
 import { Home } from '../pages/home';
 import { Chats } from '../pages/chats';
@@ -28,3 +28,4 @@ export function renderDOM(route: keyof typeof ROUTES) {
   root.append(page.getContent()!);
   page.dispatchComponentDidMount();
 }
+ */

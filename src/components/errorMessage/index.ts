@@ -4,7 +4,7 @@ import { ErrorMessageProps } from './types';
 
 export class ErrorMessage extends Block {
   constructor(props: ErrorMessageProps) {
-    super('span', props);
+    super({type:'span', ...props});
   }
 
   get title() {
