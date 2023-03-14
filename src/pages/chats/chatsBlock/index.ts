@@ -4,6 +4,7 @@ import { ChatsSearch } from './chatsSearch';
 import { ChatsCard } from './chatsCard';
 import { chartsCards } from './consts';
 import { Link } from '../../../components/link';
+import Router from '../../../utils/Router';
 
 
 export class ChatsBlock extends Block {
@@ -15,7 +16,8 @@ export class ChatsBlock extends Block {
     this.element?.classList.add('chats');
     this.children.chatsProfileLink = new Link({
       title: 'Профиль >',
-      to: '/profile'
+      to: '/profile',
+      router: Router,
     });
     this.children.chatsSearch = new ChatsSearch({
       type: 'text',

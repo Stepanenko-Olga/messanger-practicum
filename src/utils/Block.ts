@@ -230,6 +230,7 @@ class Block<P extends Record<string, any> = any> {
     });
   }
   _createDocumentElement(tagName: string) {
+    console.log(tagName);
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }

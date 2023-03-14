@@ -4,6 +4,7 @@ import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';
 import { EditAvatar } from '../../components/editAvatar';
 import { Link } from '../../components/link';
+import Router from '../../utils/Router';
 
 export class Profile extends Block {
   constructor() {
@@ -29,15 +30,18 @@ export class Profile extends Block {
     this.children.phone = new ProfileInfoRow({ title: 'Телефон', value: '+7 910 123 45 67' });
     this.children.editInfoLink = new Link({
       title: 'Изменить данные',
-      to: '/editInfo'
+      to: '/editInfo',
+      router: Router,
     });
     this.children.editPasswordLink = new Link({
       title: 'Изменить пароль',
-      to: '/editPassword'
+      to: '/editPassword',
+      router: Router,
     });
     this.children.exit = new Link({
       title: 'Выйти',
-      to: '/home'
+      to: '/home',
+      router: Router,
     });
   }
 

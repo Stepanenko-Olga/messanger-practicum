@@ -5,11 +5,12 @@ import { Link } from '../../components/link';
 import { printValues } from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
+import Router from '../../utils/Router';
 
 
 export class Authorization extends Block {
   constructor() {
-    super('form');
+    super('box');
     this.setProps({
       events: {
         submit: (event: Event) => {
@@ -43,7 +44,8 @@ export class Authorization extends Block {
     });
     this.children.link = new Link({
       title: 'Нет аккаунта?',
-      to: '/registration'
+      to: '/registration',
+      router: Router,
     });
   }
 
