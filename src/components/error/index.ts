@@ -4,14 +4,14 @@ import { ErrorProps } from './types';
 
 export class ErrorPage extends Block {
   constructor(props: ErrorProps) {
-    super({ props });
+    super('div', props);
   }
 
   init() {
+    this.element?.classList.add('err');
   }
 
   render() {
-    console.log(this.props)
     return this.compile(template, this.props);
   }
 }

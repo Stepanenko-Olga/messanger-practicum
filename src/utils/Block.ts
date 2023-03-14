@@ -1,6 +1,9 @@
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
+"componentDidUpdate", "render", "_createDocumentElement"] }] */
+
 // Нельзя создавать экземпляр данного класса
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -16,16 +19,25 @@ class Block<P extends Record<string, any> = any> {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 
+  private _meta: { tagName: string; props: any; };
+
   /** JSDoc
    * @param {string} tagName
    * @param {Object} props
    *
    * @returns {void}
    */
-  constructor(propsWithChildren: P) {
+  constructor(tagName = 'div', propsWithChildren: any = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
+
+
+    this._meta = {
+      tagName,
+      props,
+    };
+
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -62,6 +74,14 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
+  _removeEvents(): void {
+    const { events = {} } = this.props as unknown as { events: Record<string, () => void> };
+    if (!events) return;
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -69,9 +89,15 @@ class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _init() {
-    this.init();
+  _createResources() {
+    const { tagName } = this._meta;
+    this._element = this._createDocumentElement(tagName);
+  }
 
+
+  private _init() {
+    this._createResources();
+    this.init();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -87,14 +113,15 @@ class Block<P extends Record<string, any> = any> {
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
-        child.forEach(ch => ch.dispatchComponentDidMount());
-      } else {
+        Object.values(child).forEach(item => { item.dispatchComponentDidMount() })
+      }
+      else {
         child.dispatchComponentDidMount();
       }
-    });
+    }
+    );
   }
 
   private _componentDidUpdate(oldProps: unknown, newProps: unknown) {
@@ -103,11 +130,12 @@ class Block<P extends Record<string, any> = any> {
     }
   }
 
+
   protected componentDidUpdate(oldProps: unknown, newProps: unknown) {
-    return true;
+    return oldProps !== newProps;
   }
 
-  setProps = (nextProps: Partial<P>) => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -122,13 +150,9 @@ class Block<P extends Record<string, any> = any> {
   private _render() {
     const fragment = this.render();
 
-    const newElement = fragment.firstElementChild as HTMLElement;
+    this._element!.innerHTML = '';
 
-    if (this._element && newElement) {
-      this._element.replaceWith(newElement);
-    }
-
-    this._element = newElement;
+    this._element!.append(fragment);
 
     this._addEvents();
   }
@@ -204,6 +228,18 @@ class Block<P extends Record<string, any> = any> {
         throw new Error('Нет доступа');
       }
     });
+  }
+  _createDocumentElement(tagName: string) {
+    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
+    return document.createElement(tagName);
+  }
+
+  show() {
+    this.getContent()!.style.display = 'block';
+  }
+
+  hide() {
+    this.getContent()!.style.display = 'none';
   }
 }
 

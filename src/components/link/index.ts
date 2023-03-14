@@ -2,16 +2,21 @@ import template from './link.hbs';
 import Block from '../../utils/Block';
 import { LinkProps } from './types';
 import { withRouter } from '../../utils/hocs/withRouter';
-import styles from './link.pcss';
 
 class BaseLink extends Block<LinkProps> {
   constructor(props: LinkProps) {
-    super({
-      ...props,
-      events: {
-        click: () => this.navigate()
-      },
-    });
+    super('span',
+      {
+        ...props,
+        events: {
+          click: () => this.navigate()
+        },
+      }
+    );
+  }
+
+  init() {
+    this.element?.classList.add('link');
   }
 
   navigate() {
@@ -19,7 +24,7 @@ class BaseLink extends Block<LinkProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }
 
