@@ -1,9 +1,10 @@
 import template from './link.hbs';
 import Block from '../../utils/Block';
 import { LinkProps } from './types';
-import { withRouter } from '../../utils/hocs/withRouter';
+import Router from '../../utils/Router';
 
-class BaseLink extends Block<LinkProps> {
+
+export class Link extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super('span',
       {
@@ -11,6 +12,7 @@ class BaseLink extends Block<LinkProps> {
         events: {
           click: () => this.navigate()
         },
+        router: Router
       }
     );
   }
@@ -28,4 +30,4 @@ class BaseLink extends Block<LinkProps> {
   }
 }
 
-export const Link = withRouter(BaseLink);
+

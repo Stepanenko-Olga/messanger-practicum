@@ -1,6 +1,7 @@
 import template from './home.hbs';
 import Block from '../../utils/Block';
 import { Link } from '../../components/link';
+import Router from '../../utils/Router';
 
 export class Home extends Block {
   constructor() {
@@ -11,27 +12,33 @@ export class Home extends Block {
     this.element?.classList.add('container');
     this.children.authorizationLink = new Link({
       title: 'Авторизация',
-      to: '/authorization'
+      to: '/authorization',
+      router: Router,
     });
     this.children.registrationLink = new Link({
       title: 'Регистрация',
-      to: '/registration'
+      to: '/registration',
+      router: Router,
     });
     this.children.profileLink = new Link({
       title: 'Профиль пользователя',
-      to: '/profile'
+      to: '/profile',
+      router: Router,
     });
     this.children.chatsLink = new Link({
       title: 'Чат',
-      to: '/chats'
+      to: '/chats',
+      router: Router,
     });
     this.children.page404Link = new Link({
       title: 'Page404',
-      to: '/page404'
+      to: '/page404',
+      router: Router,
     });
     this.children.page500Link = new Link({
       title: 'Page500',
-      to: '/page500'
+      to: '/page500',
+      router: Router,
     });
   }
 
