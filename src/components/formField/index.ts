@@ -52,8 +52,8 @@ export class FormField extends Block {
 
   validate(mask: RegExp) {
     mask.test((this.children.input as FormFieldInput).value) 
-    ? this.children.error.setProps({title: undefined}) 
-    : this.children.error.setProps({title: "Поле содержит недопустимые символы"});
+    ? (this.children.error as Block).setProps({title: undefined}) 
+    : (this.children.error as Block).setProps({title: "Поле содержит недопустимые символы"});
   }
 
   render() {  
