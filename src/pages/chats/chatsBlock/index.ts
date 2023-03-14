@@ -4,7 +4,7 @@ import { ChatsSearch } from './chatsSearch';
 import { ChatsCard } from './chatsCard';
 import { chartsCards } from './consts';
 import { Link } from '../../../components/link';
-import Router from '../../../utils/Router';
+import Router from '../../../utils/router/Router';
 
 
 export class ChatsBlock extends Block {

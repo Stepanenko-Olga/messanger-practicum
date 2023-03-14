@@ -5,7 +5,7 @@ import { Link } from '../../components/link';
 import { printValues } from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
-import Router from '../../utils/Router';
+import Router from '../../utils/router/Router';
 
 
 export class Authorization extends Block {

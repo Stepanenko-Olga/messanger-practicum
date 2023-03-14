@@ -1,5 +1,5 @@
 import { PropsWithRouter } from "../../utils/hocs/withRouter";
-import Router from "../../utils/Router";
+import Router from "../../utils/router/Router";
 
 export interface LinkProps extends PropsWithRouter {
   title: string;

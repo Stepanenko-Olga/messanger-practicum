@@ -4,7 +4,7 @@ import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';
 import { EditAvatar } from '../../components/editAvatar';
 import { Link } from '../../components/link';
-import Router from '../../utils/Router';
+import Router from '../../utils/router/Router';
 
 export class Profile extends Block {
   constructor() {

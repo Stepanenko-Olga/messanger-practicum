@@ -1,5 +1,6 @@
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
+import { isEqual } from './helpers';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
 "componentDidUpdate", "render", "_createDocumentElement"] }] */
@@ -18,7 +19,6 @@ class Block<P extends Record<string, any> = any> {
   public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-
   private _meta: { tagName: string; props: any; };
 
   /** JSDoc
@@ -27,25 +27,20 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
+
   constructor(tagName = 'div', propsWithChildren: any = {}) {
     const eventBus = new EventBus();
-
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-
 
     this._meta = {
       tagName,
       props,
     };
 
-
     this.children = children;
     this.props = this._makePropsProxy(props);
-
     this.eventBus = () => eventBus;
-
     this._registerEvents(eventBus);
-
     eventBus.emit(Block.EVENTS.INIT);
   }
 
@@ -62,7 +57,6 @@ class Block<P extends Record<string, any> = any> {
         props[key] = value;
       }
     });
-
     return { props: props as P, children };
   }
 
@@ -75,7 +69,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _removeEvents(): void {
-    const { events = {} } = this.props as unknown as { events: Record<string, () => void> };
+    const { events = {} } = this.props as P & { events: Record<string, () => void> };
     if (!events) return;
     Object.keys(events).forEach((eventName) => {
       this._element?.removeEventListener(eventName, events[eventName]);
@@ -101,15 +95,13 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {
-  }
+  protected init() {}
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -132,7 +124,7 @@ class Block<P extends Record<string, any> = any> {
 
 
   protected componentDidUpdate(oldProps: unknown, newProps: unknown) {
-    return oldProps !== newProps;
+    return true;
   }
 
   setProps = (nextProps: any) => {
@@ -149,11 +141,8 @@ class Block<P extends Record<string, any> = any> {
 
   private _render() {
     const fragment = this.render();
-
     this._element!.innerHTML = '';
-
     this._element!.append(fragment);
-
     this._addEvents();
   }
 
@@ -229,8 +218,7 @@ class Block<P extends Record<string, any> = any> {
       }
     });
   }
-  _createDocumentElement(tagName: string) {
-    console.log(tagName);
+  _createDocumentElement(tagName: string) { 
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }

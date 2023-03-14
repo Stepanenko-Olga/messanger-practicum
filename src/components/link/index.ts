@@ -1,7 +1,7 @@
 import template from './link.hbs';
 import Block from '../../utils/Block';
 import { LinkProps } from './types';
-import Router from '../../utils/Router';
+import Router from '../../utils/router/Router';
 
 
 export class Link extends Block<LinkProps> {

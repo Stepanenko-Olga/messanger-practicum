@@ -1,7 +1,7 @@
 import template from './home.hbs';
 import Block from '../../utils/Block';
 import { Link } from '../../components/link';
-import Router from '../../utils/Router';
+import Router from '../../utils/router/Router';
 
 export class Home extends Block {
   constructor() {

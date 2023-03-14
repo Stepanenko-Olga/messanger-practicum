@@ -1,7 +1,7 @@
 import { ErrorPage } from '../../components/error';
 import { Link } from '../../components/link';
 import Block from '../../utils/Block';
-import Router from '../../utils/Router';
+import Router from '../../utils/router/Router';
 import template from './page404.hbs';
 
 export class Page404 extends Block {
