@@ -1,19 +1,8 @@
-export interface Headers {
-    name: string;
-    value: string;
-}
+import { Method } from "./consts";
 
-export interface Options {
-    method?: string;
-    data?: unknown[];
-    timeout?: number;
-    headers?: Headers;
-}
+export type Options = {
+    method: Method;
+    data?: any;
+};
 
-export interface HTTPMethods {
-    (url: string, options: Options) : Promise<XMLHttpRequest>
-}
 
-export interface HTTPRequest {
-    (url: string, options: Options, timeout?: number) : Promise<XMLHttpRequest>;
-}

@@ -1,42 +1,77 @@
-import { METHODS } from './consts';
-import { HTTPMethods, HTTPRequest } from './types';
-import { queryStringify } from './utils';
+import { Method } from "./consts";
+import { Options } from "./types";
 
-// eslint-disable-next-line no-unused-vars
-class HTTPTransport {
-  get: HTTPMethods = (url, options = {}) => {
-    let urlFromOptions: string = '';
-    if (options.data) urlFromOptions = url.concat(queryStringify(options.data));
-    return this.request(urlFromOptions, { ...options, method: METHODS.GET }, options.timeout);
-  };
+export default class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
 
-  put: HTTPMethods = (url, options = {}) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
 
-  post: HTTPMethods = (url, options = {}) => this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+  public get<Response>(path = '/'): Promise<Response> {
+    return this.request<Response>(this.endpoint + path);
+  }
 
-  delete: HTTPMethods = (url, options = {}) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
+      data,
+    });
+  }
 
-  /* eslint class-methods-use-this: ["error", { "exceptMethods": ["request"]}] */
-  request: HTTPRequest = (url, options, timeout = 5000) => {
-    const { headers, data, method = METHODS.GET } = options;
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Put,
+      data,
+    });
+  }
+
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    });
+  }
+
+  public delete<Response>(path: string): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+    });
+  }
+
+  private request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
+    const { method, data } = options;
+
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
-      if (headers) xhr.setRequestHeader(headers.name, headers.value);
 
-      xhr.onload = () => {
-        resolve(xhr);
+      xhr.onreadystatechange = (e) => {
+
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.timeout = timeout;
-      xhr.ontimeout = reject;
 
-      if (method === 'GET' || !data) {
+      xhr.onabort = () => reject({ reason: 'abort' });
+      xhr.onerror = () => reject({ reason: 'network error' });
+      xhr.ontimeout = () => reject({ reason: 'timeout' });
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
+      if (method === Method.Get || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));
       }
     });
-  };
+  }
 }
