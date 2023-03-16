@@ -1,3 +1,5 @@
+import { PlainObject } from "./types";
+
 export type Indexed<T = any> = {
     [key in string]: T;
 };
@@ -83,9 +85,6 @@ export function queryStringify(data: StringIndexed): string | never {
 }
 
 
-type PlainObject<T = any> = {
-    [k in string]: T;
-};
 
 function isPlainObject(value: unknown): value is PlainObject {
     return typeof value === 'object'

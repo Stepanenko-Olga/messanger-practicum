@@ -6,6 +6,9 @@ import { printValues } from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
 import Router from '../../utils/router/Router';
+import { FormFieldInput } from '../../components/formFieldInput';
+import { SigninData } from '../../api/AuthApi/types';
+import AuthController from '../../controllers/AuthController';
 
 
 export class Authorization extends Block {
@@ -48,6 +51,18 @@ export class Authorization extends Block {
       router: Router,
     });
   }
+
+  onSubmit() {
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof FormField)
+      .map((child) => ([(child as FormFieldInput).name(), (child as FormFieldInput).value]))
+
+    const data = Object.fromEntries(values);
+
+    AuthController.signin(data as SigninData);
+  }
+
 
   render() {
     return this.compile(template, this.props);

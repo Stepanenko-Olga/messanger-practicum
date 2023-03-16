@@ -5,8 +5,10 @@ import { ProfileLinkRow } from './profileLinkRow';
 import { EditAvatar } from '../../components/editAvatar';
 import { Link } from '../../components/link';
 import Router from '../../utils/router/Router';
+import AuthController from '../../controllers/AuthController';
+import { withStore } from '../../utils/Store';
 
-export class Profile extends Block {
+export class ProfilePage extends Block {
   constructor() {
     super('box');
   }
@@ -42,6 +44,11 @@ export class Profile extends Block {
       title: 'Выйти',
       to: '/home',
       router: Router,
+      events: {
+        click: () => {
+          AuthController.logout();
+        }
+      }
     });
   }
 
@@ -49,3 +56,6 @@ export class Profile extends Block {
     return this.compile(template, this.props);
   }
 }
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const Profile = withUser(ProfilePage);

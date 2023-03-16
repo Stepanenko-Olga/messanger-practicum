@@ -8,6 +8,7 @@ import { Home } from './src/pages/home';
 import { Page404 } from './src/pages/page404';
 import { Page500 } from './src/pages/page500';
 import Router from './src/utils/router/Router';
+import AuthController from './src/controllers/AuthController';
 
 enum Routes {
   Home = '/',
@@ -33,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Page500, Page500)
     .use(Routes.Chats, Chats)
 
-  /* let isProtectedRoute = true;
+  let isProtectedRoute = true;
 
   switch (window.location.pathname) {
     case Routes.Home:
@@ -42,23 +43,21 @@ window.addEventListener('DOMContentLoaded', async () => {
       break;
   }
 
-  try { */
+  try {
+    await AuthController.fetchUser();
 
+    Router.start();
 
-  Router.start();
-  //Router.go(Routes.Home);
+     if (!isProtectedRoute) {
+      Router.go(Routes.Profile)
+    }
+  } catch (e) {
+    Router.start();
+  
+    if (isProtectedRoute) {
+      Router.go(Routes.Home);
+    }
+  } 
 
-
-  /* if (!isProtectedRoute) {
-    Router.go(Routes.Home)
-  }
-} catch (e) {
-  Router.start();
-
-  if (isProtectedRoute) {
-    Router.go(Routes.Home);
-  }
-} */
-
-});
+  });
 

@@ -1,6 +1,7 @@
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
-import { isEqual } from './helpers';
+import { isEqual } from './helpers/helpers';
+import { PlainObject } from './helpers/types';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
 "componentDidUpdate", "render", "_createDocumentElement"] }] */
@@ -95,13 +96,13 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {}
+  protected init() { }
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -116,15 +117,15 @@ class Block<P extends Record<string, any> = any> {
     );
   }
 
-  private _componentDidUpdate(oldProps: unknown, newProps: unknown) {
+  private _componentDidUpdate(oldProps: PlainObject<any>, newProps: PlainObject<any>) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
 
-  protected componentDidUpdate(oldProps: unknown, newProps: unknown) {
-    return true;
+  protected componentDidUpdate(oldProps: PlainObject<any>, newProps: PlainObject<any>) {
+    return !isEqual(oldProps, newProps);
   }
 
   setProps = (nextProps: any) => {
@@ -218,18 +219,11 @@ class Block<P extends Record<string, any> = any> {
       }
     });
   }
-  _createDocumentElement(tagName: string) { 
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
-  show() {
-    this.getContent()!.style.display = 'block';
-  }
-
-  hide() {
-    this.getContent()!.style.display = 'none';
-  }
 }
 
 export default Block;

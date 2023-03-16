@@ -4,6 +4,9 @@ import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
 import { printValues } from '../../utils/printFormData';
 import { submitValidation } from '../../utils/validation';
+import { FormFieldInput } from '../../components/formFieldInput';
+import AuthController from '../../controllers/AuthController';
+import { SignupData } from '../../api/AuthApi/types';
 
 export class Registration extends Block {
   constructor() {
@@ -13,7 +16,7 @@ export class Registration extends Block {
         submit: (event: Event) => {
           event.preventDefault();
           submitValidation(this.children);
-          printValues(this.children);
+          this.onSubmit();
         }
       },
     })
@@ -74,6 +77,18 @@ export class Registration extends Block {
       title: 'Зарегистироваться',
       type: 'submit',
     });
+  }
+
+
+  onSubmit() {
+    const values = printValues(this.children);
+
+
+    console.log(values);
+    const data = Object.fromEntries(values);
+    console.log(data);
+
+    AuthController.signup(data as SignupData);
   }
 
   render() {

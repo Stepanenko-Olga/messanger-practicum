@@ -5,7 +5,7 @@ import Block from "./Block";
 export const printValues = (props: Record<string, Block | Block[]>) => {
   let fields: FormField[] = [];
   let inputs: FormFieldInput[] = [];
-  const formData: Record<string, string>[] = [];
+  const formData: Record<string, string>[][] = [];
   Object.values(props).forEach((child) => {
     if (child instanceof FormField)
       fields.push(child);
@@ -16,9 +16,10 @@ export const printValues = (props: Record<string, Block | Block[]>) => {
     })
   });
   for (var i = 0; i < inputs.length; i++) {
-    let form: Record<string, string> = {};
-    form[inputs[i].name] = inputs[i].value;
+    let form: Record<string, string>[] = [];
+    form = [inputs[i].name, inputs[i].value];
     formData.push(form);
   }
-  console.log(formData);
+  return(formData);
+
 }
