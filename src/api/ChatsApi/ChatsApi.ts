@@ -1,5 +1,5 @@
 import BaseAPI from '../BaseApi/BaseApi';
-import { CreateChatData,  Chat} from './types';
+import { CreateChatData, Chat } from './types';
 
 export class ChatsAPI extends BaseAPI {
     constructor() {
@@ -11,21 +11,18 @@ export class ChatsAPI extends BaseAPI {
     }
 
 
-    delete() {        
+    delete() {
         return this.http.delete('/');
     }
 
     read(): Promise<Chat[]> {
+        console.log("chats");
         return this.http.get('/');
     }
 
-    logout() {
-        return this.http.post('/logout');
-    }
 
-    
     update = undefined;
-  
+
 }
 
 export default new ChatsAPI();

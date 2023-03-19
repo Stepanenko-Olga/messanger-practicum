@@ -14,7 +14,7 @@ export class AuthController {
         try {
             await this.api.signin(data);
             await this.fetchUser();
-            router.go('/profile');
+            router.go('/settings');
         } catch (e: any) {
             store.set('user.error', e.message);
         }
@@ -25,7 +25,7 @@ export class AuthController {
         try {
             await this.api.signup(data);
             await this.fetchUser();
-            router.go('/profile');
+            router.go('/settings');
         } catch (e: any) {
             store.set('user.error', e.message);
         }
@@ -35,8 +35,7 @@ export class AuthController {
         store.set('user.isLoading', true);
         const user = await this.api.read();
         store.set('user.data', user);
-        store.set('user.isLoading', false);
-        console.log(store);
+        store.set('user.isLoading', false);        
     }
 
     async logout() {

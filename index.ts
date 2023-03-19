@@ -11,15 +11,15 @@ import Router from './src/utils/router/Router';
 import AuthController from './src/controllers/AuthController';
 
 enum Routes {
-  Home = '/',
-  Authorization = '/authorization',
-  Registration = '/registration',
-  Profile = '/profile',
+  Home = '/home',
+  Authorization = '/',
+  Registration = '/sign-up',
+  Profile = '/settings',
   EditInfo = '/editInfo',
   EditPassword = '/editPassword',
   Page404 = '/page404',
   Page500 = '/page500',
-  Chats = '/chats',
+  Chats = '/messenger',
 }
 
 window.addEventListener('DOMContentLoaded', async () => {

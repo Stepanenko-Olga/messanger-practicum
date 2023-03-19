@@ -16,7 +16,7 @@ export class ChatsBlock extends Block {
     this.element?.classList.add('chats');
     this.children.chatsProfileLink = new Link({
       title: 'Профиль >',
-      to: '/profile',
+      to: '/settngs',
       router: Router,
     });
     this.children.chatsSearch = new ChatsSearch({

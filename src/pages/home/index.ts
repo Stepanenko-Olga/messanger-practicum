@@ -12,22 +12,22 @@ export class Home extends Block {
     this.element?.classList.add('container');
     this.children.authorizationLink = new Link({
       title: 'Авторизация',
-      to: '/authorization',
+      to: '/',
       router: Router,
     });
     this.children.registrationLink = new Link({
       title: 'Регистрация',
-      to: '/registration',
+      to: '/sign-up',
       router: Router,
     });
     this.children.profileLink = new Link({
       title: 'Профиль пользователя',
-      to: '/profile',
+      to: '/settings',
       router: Router,
     });
     this.children.chatsLink = new Link({
       title: 'Чат',
-      to: '/chats',
+      to: '/messenger',
       router: Router,
     });
     this.children.page404Link = new Link({

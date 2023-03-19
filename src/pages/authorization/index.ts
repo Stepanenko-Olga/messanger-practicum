@@ -45,7 +45,7 @@ export class Authorization extends Block {
     });
     this.children.link = new Link({
       title: 'Нет аккаунта?',
-      to: '/registration',
+      to: '/sign-up',
       router: Router,
     });
   }

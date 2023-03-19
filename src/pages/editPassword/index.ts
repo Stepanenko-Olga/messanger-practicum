@@ -22,7 +22,6 @@ export class EditPassword extends Block {
   }
 
   init() {
-    const user = store.getState().user?.data;
     this.element?.classList.add('container');
     this.children.editRowOldPassword = new FormField({
       label: 'Старый пароль',     

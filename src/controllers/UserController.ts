@@ -23,7 +23,7 @@ export class UserController {
         try {
             await this.api.editUser(data);
             await AuthController.fetchUser();
-            router.go('/profile');
+            router.go('/settings');
         } catch (e: any) {
             store.set('user.error', e.message);
         }
@@ -33,7 +33,7 @@ export class UserController {
         try {
             await this.api.editPassword(data);
             await AuthController.fetchUser();
-            router.go('/profile');
+            router.go('/settings');
         } catch (e: any) {
             store.set('user.error', e.message);
         }
