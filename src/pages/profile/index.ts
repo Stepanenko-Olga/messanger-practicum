@@ -16,6 +16,7 @@ export class ProfilePage extends Block {
 
 
   init() {
+    AuthController.fetchUser();
     this.element?.classList.add('container');
     this.children.editAvatar = new EditAvatar({});
     this.children.avaOpen = new ProfileLinkRow({

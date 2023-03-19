@@ -13,9 +13,8 @@ export class Registration extends Block {
     super('form');
     this.setProps({
       events: {
-        submit: (event: Event) => {
-          event.preventDefault();
-          submitValidation(this.children);
+        submit: (event: Event) => {  
+          event.preventDefault();        
           this.onSubmit();
         }
       },
@@ -66,13 +65,6 @@ export class Registration extends Block {
       type: 'password',
       validationType: "password"
     });
-    this.children.formInputPasswordCheck = new FormField({
-      label: 'Пароль (еще раз)',
-      name: 'password_check',
-      value: '******',
-      type: 'password',
-      validationType: "password"
-    });
     this.children.button = new Button({
       title: 'Зарегистироваться',
       type: 'submit',
@@ -80,14 +72,10 @@ export class Registration extends Block {
   }
 
 
-  onSubmit() {
+  onSubmit() {   
+    submitValidation(this.children);
     const values = printValues(this.children);
-
-
-    console.log(values);
     const data = Object.fromEntries(values);
-    console.log(data);
-
     AuthController.signup(data as SignupData);
   }
 

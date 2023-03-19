@@ -18,8 +18,7 @@ export class Authorization extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          submitValidation(this.children);
-          printValues(this.children);
+          this.onSubmit();
         }
       },
     })
@@ -53,13 +52,9 @@ export class Authorization extends Block {
   }
 
   onSubmit() {
-    const values = Object
-      .values(this.children)
-      .filter(child => child instanceof FormField)
-      .map((child) => ([(child as FormFieldInput).name(), (child as FormFieldInput).value]))
-
+    submitValidation(this.children);
+    const values = printValues(this.children);
     const data = Object.fromEntries(values);
-
     AuthController.signin(data as SigninData);
   }
 

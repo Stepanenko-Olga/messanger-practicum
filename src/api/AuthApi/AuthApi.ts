@@ -14,10 +14,12 @@ export class AuthAPI extends BaseAPI {
 
 
     signup(data: SignupData) {
+        console.log(data);
         return this.http.post('/signup', data);
     }
 
     read(): Promise<User> {
+        console.log("get");
         return this.http.get('/user');
     }
 

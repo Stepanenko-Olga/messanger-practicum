@@ -14,6 +14,7 @@ export default class HTTPTransport {
   }
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    console.log(data, path);
     return this.request<Response>(this.endpoint + path, {
       method: Method.Post,
       data,
