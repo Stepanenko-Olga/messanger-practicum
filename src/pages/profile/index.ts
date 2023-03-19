@@ -5,7 +5,7 @@ import { ProfileLinkRow } from './profileLinkRow';
 import { EditAvatar } from '../../components/editAvatar';
 import Router from '../../utils/router/Router';
 import AuthController from '../../controllers/AuthController';
-import { withStore } from '../../utils/Store';
+import store, { withStore } from '../../utils/Store';
 import { ProfileExitRow } from './profileExitRow';
 
 export class ProfilePage extends Block {
@@ -17,6 +17,8 @@ export class ProfilePage extends Block {
 
   init() {
     AuthController.fetchUser();
+    console.log(store.getState().user?.data);
+    const user = store.getState().user?.data;
     this.element?.classList.add('container');
     this.children.editAvatar = new EditAvatar({});
     /* this.children.avaOpen = new ProfileLinkRow({
@@ -25,12 +27,12 @@ export class ProfilePage extends Block {
         click: () => { (this.children.editAvatar as Block).setProps({ display: "block" }) },
       },
     }), */
-    this.children.email = new ProfileInfoRow({ title: 'Почта', value: 'pochta@yandex.ru' });
-    this.children.login = new ProfileInfoRow({ title: 'Логин', value: 'ivanivanov' });
-    this.children.firstName = new ProfileInfoRow({ title: 'Имя', value: 'Иван' });
-    this.children.secondName = new ProfileInfoRow({ title: 'Фамилия', value: 'Иванов' });
-    this.children.displayName = new ProfileInfoRow({ title: 'Имя в чате', value: 'Иван' });
-    this.children.phone = new ProfileInfoRow({ title: 'Телефон', value: '+7 910 123 45 67' });
+    this.children.email = new ProfileInfoRow({ title: 'Почта', value: user?.email });
+    this.children.login = new ProfileInfoRow({ title: 'Логин', value: user?.login });
+    this.children.firstName = new ProfileInfoRow({ title: 'Имя', value: user?.first_name });
+    this.children.secondName = new ProfileInfoRow({ title: 'Фамилия', value: user?.second_name });
+    this.children.displayName = new ProfileInfoRow({ title: 'Имя в чате', value: user?.login });
+    this.children.phone = new ProfileInfoRow({ title: 'Телефон', value: user?.phone });
     this.children.editInfoLink = new ProfileLinkRow({
       title: 'Изменить данные',
       to: '/editInfo',
