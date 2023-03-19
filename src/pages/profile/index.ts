@@ -3,10 +3,10 @@ import template from './profile.hbs';
 import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';
 import { EditAvatar } from '../../components/editAvatar';
-import { Link } from '../../components/link';
 import Router from '../../utils/router/Router';
 import AuthController from '../../controllers/AuthController';
 import { withStore } from '../../utils/Store';
+import { ProfileExitRow } from './profileExitRow';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -19,32 +19,30 @@ export class ProfilePage extends Block {
     AuthController.fetchUser();
     this.element?.classList.add('container');
     this.children.editAvatar = new EditAvatar({});
-    this.children.avaOpen = new ProfileLinkRow({
+    /* this.children.avaOpen = new ProfileLinkRow({
       title: 'Поменять аватар',
       events: {
         click: () => { (this.children.editAvatar as Block).setProps({ display: "block" }) },
       },
-    }),
-      this.children.email = new ProfileInfoRow({ title: 'Почта', value: 'pochta@yandex.ru' });
+    }), */
+    this.children.email = new ProfileInfoRow({ title: 'Почта', value: 'pochta@yandex.ru' });
     this.children.login = new ProfileInfoRow({ title: 'Логин', value: 'ivanivanov' });
     this.children.firstName = new ProfileInfoRow({ title: 'Имя', value: 'Иван' });
     this.children.secondName = new ProfileInfoRow({ title: 'Фамилия', value: 'Иванов' });
     this.children.displayName = new ProfileInfoRow({ title: 'Имя в чате', value: 'Иван' });
     this.children.phone = new ProfileInfoRow({ title: 'Телефон', value: '+7 910 123 45 67' });
-    this.children.editInfoLink = new Link({
+    this.children.editInfoLink = new ProfileLinkRow({
       title: 'Изменить данные',
       to: '/editInfo',
       router: Router,
     });
-    this.children.editPasswordLink = new Link({
+    this.children.editPasswordLink = new ProfileLinkRow({
       title: 'Изменить пароль',
       to: '/editPassword',
       router: Router,
     });
-    this.children.exit = new Link({
+    this.children.exit = new ProfileExitRow({
       title: 'Выйти',
-      to: '/home',
-      router: Router,
       events: {
         click: () => {
           AuthController.logout();

@@ -1,6 +1,10 @@
+import Router from "../../../utils/router/Router";
+
 export interface ProfileLinkRowProps {
   title: string;
-  events: {
+  to: string;
+  router: typeof Router;
+  events?: {
     click: () => void;
   };
 }

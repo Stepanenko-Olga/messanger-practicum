@@ -6,7 +6,6 @@ import { printValues } from '../../utils/printFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
 import Router from '../../utils/router/Router';
-import { FormFieldInput } from '../../components/formFieldInput';
 import { SigninData } from '../../api/AuthApi/types';
 import AuthController from '../../controllers/AuthController';
 

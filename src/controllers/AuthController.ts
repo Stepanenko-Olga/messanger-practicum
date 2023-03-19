@@ -21,30 +21,29 @@ export class AuthController {
     }
 
     async signup(data: SignupData) {
-        console.log(data);
+
         try {
             await this.api.signup(data);
             await this.fetchUser();
-
             router.go('/profile');
-        } catch (e: any) {          
+        } catch (e: any) {
             store.set('user.error', e.message);
         }
     }
 
     async fetchUser() {
-        console.log("fetch");
         store.set('user.isLoading', true);
         const user = await this.api.read();
         store.set('user.data', user);
         store.set('user.isLoading', false);
+        console.log(store);
     }
 
     async logout() {
         try {
+            console.log("logout");
             await this.api.logout();
             store.set('user.data', undefined);
-
             router.go('/');
         } catch (e: any) {
             store.set('user.error', e.message);

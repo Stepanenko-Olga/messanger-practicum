@@ -4,7 +4,6 @@ import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
 import { printValues } from '../../utils/printFormData';
 import { submitValidation } from '../../utils/validation';
-import { FormFieldInput } from '../../components/formFieldInput';
 import AuthController from '../../controllers/AuthController';
 import { SignupData } from '../../api/AuthApi/types';
 
@@ -13,8 +12,8 @@ export class Registration extends Block {
     super('form');
     this.setProps({
       events: {
-        submit: (event: Event) => {  
-          event.preventDefault();        
+        submit: (event: Event) => {
+          event.preventDefault();
           this.onSubmit();
         }
       },
@@ -72,7 +71,7 @@ export class Registration extends Block {
   }
 
 
-  onSubmit() {   
+  onSubmit() {
     submitValidation(this.children);
     const values = printValues(this.children);
     const data = Object.fromEntries(values);
