@@ -1,3 +1,5 @@
+import { Chat } from "../../../../api/ChatsApi/types";
+
 export interface MessagesFooterProps {
-  content?: string;
+  selectedChat?: Chat;
 }

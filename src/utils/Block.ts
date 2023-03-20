@@ -1,7 +1,7 @@
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
-import { isEqual } from './helpers/helpers';
-import { PlainObject } from './helpers/types';
+import { isEqual } from './helpers/helpers'
+
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
 "componentDidUpdate", "render", "_createDocumentElement"] }] */
@@ -117,15 +117,16 @@ class Block<P extends Record<string, any> = any> {
     );
   }
 
-  private _componentDidUpdate(oldProps: PlainObject<any>, newProps: PlainObject<any>) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
 
-  protected componentDidUpdate(oldProps: PlainObject<any>, newProps: PlainObject<any>) {
-    return !isEqual(oldProps, newProps);
+  protected componentDidUpdate(oldProps: P, newProps: P) {
+    //return !isEqual(oldProps, newProps);
+    return true;
   }
 
   setProps = (nextProps: any) => {

@@ -24,7 +24,11 @@ export class FormFieldInput extends Block {
   }
 
   get validationType() {
-    return this.props.validationType;
+    return this.props.validationType;    
+  }
+
+  setValue(value: string) {
+    return (this.element as HTMLInputElement).value = value;
   }
 
 

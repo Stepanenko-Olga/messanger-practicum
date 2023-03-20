@@ -8,7 +8,7 @@ export enum StoreEvents {
   Updated = 'updated'
 }
 
-interface State {
+export interface State {
   user?: {
     data: User;
     error: string;
@@ -16,7 +16,7 @@ interface State {
   },
   chats?: {
     data: Chat[];
-    selectedChat?: number;
+    selectedChat?: Chat;
     error: string;
     isLoading: boolean;
   }
@@ -25,6 +25,10 @@ interface State {
     error: string;
     isLoading: boolean;
   }
+}
+
+interface BlockConstructable<P extends Record<string, any> = any> {
+  new(props: P): Block<P>;
 }
 
 export class Store extends EventBus {
@@ -48,7 +52,7 @@ const store = new Store();
 
 export function withStore(mapStateToProps: (state: any) => any) {
 
-  return function wrap(Component: typeof Block) {
+  return function wrap(Component: BlockConstructable) {
     let previousState: any;
 
 

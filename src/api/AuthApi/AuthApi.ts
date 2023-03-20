@@ -13,8 +13,7 @@ export class AuthAPI extends BaseAPI {
     }
 
 
-    signup(data: SignupData) {
-        console.log(data);
+    signup(data: SignupData) {     
         return this.http.post('/signup', data);
     }
 

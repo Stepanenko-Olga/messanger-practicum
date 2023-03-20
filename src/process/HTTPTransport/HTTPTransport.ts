@@ -13,8 +13,7 @@ export default class HTTPTransport {
     return this.request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
-    console.log(data, path);
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {  
     return this.request<Response>(this.endpoint + path, {
       method: Method.Post,
       data,

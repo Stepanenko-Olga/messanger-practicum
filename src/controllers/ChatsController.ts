@@ -26,9 +26,9 @@ export class ChatsController {
             store.set('chats.isLoading', true);
             const chats = await this.api.read();
             chats.map(async (chat) => {
-                const token = await this.getToken(chat.id);          
+                const token = await this.getToken(chat.id);
                 await MessagesController.connect(chat.id, token);
-              });
+            });
             store.set('chats.data', chats);
             store.set('chats.isLoading', false);
         } catch (e: any) {
@@ -37,16 +37,17 @@ export class ChatsController {
     }
 
     selectChat(id: number) {
-        store.set('selectedChat', id);
+        const chat = store.getState().chats?.data.find((chat => chat.id === id));   
+        store.set('chats.selectedChat', chat);
     }
 
     getToken(id: number) {
         return this.api.getToken(id);
-      }
+    }
 
 }
 
-const controller =  new ChatsController();
+const controller = new ChatsController();
 
 // @ts-ignore
 window.chatsController = controller;

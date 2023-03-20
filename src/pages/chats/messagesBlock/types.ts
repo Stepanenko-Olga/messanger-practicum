@@ -1,7 +1,7 @@
-import { Message } from "../../../api/ChatsApi/types";
+import { Chat, Message } from "../../../api/ChatsApi/types";
 
 export interface MessagesBlockProps {
-    selectedChat?: number;
+    selectedChat?: Chat;
     messages: Message[];
     userId: number;
   }
