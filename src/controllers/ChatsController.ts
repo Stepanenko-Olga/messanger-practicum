@@ -2,6 +2,7 @@ import store from '../utils/Store';
 import API, { ChatsAPI } from '../api/ChatsApi/ChatsApi';
 import { CreateChatData } from '../api/ChatsApi/types';
 import router from '../utils/router/Router';
+import MessagesController from './MessagesController';
 
 export class ChatsController {
     private readonly api: ChatsAPI;
@@ -24,6 +25,10 @@ export class ChatsController {
         try {
             store.set('chats.isLoading', true);
             const chats = await this.api.read();
+            chats.map(async (chat) => {
+                const token = await this.getToken(chat.id);          
+                await MessagesController.connect(chat.id, token);
+              });
             store.set('chats.data', chats);
             store.set('chats.isLoading', false);
         } catch (e: any) {
@@ -35,7 +40,16 @@ export class ChatsController {
         store.set('selectedChat', id);
     }
 
+    getToken(id: number) {
+        return this.api.getToken(id);
+      }
+
 }
 
-export default new ChatsController();
+const controller =  new ChatsController();
+
+// @ts-ignore
+window.chatsController = controller;
+
+export default controller;
 

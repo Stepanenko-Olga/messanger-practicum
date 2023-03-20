@@ -2,7 +2,7 @@ import { set } from './helpers/helpers';
 import { EventBus } from './EventBus';
 import Block from './Block';
 import { User } from '../api/AuthApi/types';
-import { Chat } from '../api/ChatsApi/types';
+import { Chat, Message } from '../api/ChatsApi/types';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -16,9 +16,14 @@ interface State {
   },
   chats?: {
     data: Chat[];
-    selectedChat: Chat;
+    selectedChat?: number;
     error: string;
-    isLoading: boolean;    
+    isLoading: boolean;
+  }
+  messages?: {
+    data: Record<number, Message[]>;
+    error: string;
+    isLoading: boolean;
   }
 }
 
