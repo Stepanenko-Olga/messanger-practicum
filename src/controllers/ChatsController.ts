@@ -31,6 +31,10 @@ export class ChatsController {
         }
     }
 
+    selectChat(id: number) {
+        store.set('selectedChat', id);
+    }
+
 }
 
 export default new ChatsController();

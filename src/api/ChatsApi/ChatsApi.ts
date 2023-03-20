@@ -15,8 +15,7 @@ export class ChatsAPI extends BaseAPI {
         return this.http.delete('/');
     }
 
-    read(): Promise<Chat[]> {
-        console.log("chats");
+    read(): Promise<Chat[]> {        
         return this.http.get('/');
     }
 
