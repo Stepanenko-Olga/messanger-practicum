@@ -25,7 +25,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
       name: 'name',
       placeholder: 'Поиск',
     });
-    this.children.chatsCards = this.createChats(this.props);    
+    this.children.chatsCards = this.createChats(this.props);
   }
 
   protected componentDidUpdate(oldProps: ChatsBlockProps, newProps: ChatsBlockProps): boolean {
@@ -40,7 +40,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
         img: chat.avatar,
         name: chat.title,
         text: chat.last_message?.content,
-        time: chat.last_message?.time,
+        time: chat.last_message?.time?.slice(0, 10),
         count: chat.unread_count,
         events: {
           click: () => {

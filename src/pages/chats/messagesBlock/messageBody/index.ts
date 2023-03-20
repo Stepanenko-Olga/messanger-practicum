@@ -2,22 +2,27 @@ import template from './messagesBody.hbs';
 import Block from '../../../../utils/Block';
 import { MessagesBodyProps } from './types';
 import { MessageMy } from './messageMy';
-import { MessageAnother } from './messageAnother';
-import { messages } from './consts';
+import { MessageAnother } from './messageAnother';;
+import store from '../../../../utils/Store';
+import { Message } from "../../../../api/ChatsApi/types";
 
-export class MessagesBody extends Block {
+export class MessagesBody extends Block<MessagesBodyProps> {
   constructor(props: MessagesBodyProps) {
     super('div', props);
   }
 
 
 
-  init() {
+  init() {    
     this.element?.classList.add('messages__body');
     this.children.messages = [];
-    messages.map((message) => {
-      if (message.type === "my") (this.children.messages as Block[]).push(new MessageMy({ text: message.text, type: message.type }));
-      if (message.type === "another") (this.children.messages as Block[]).push(new MessageAnother({ text: message.text, type: message.type }));
+    this.props.messages.map((message: Message) => {
+      if (message.user_id === store.getState().user?.data.id) {
+        (this.children.messages as Block[]).push(new MessageMy({ text: message.content, type: "my" }));
+      } else {
+        (this.children.messages as Block[]).push(new MessageAnother({ text: message.content, type: "another" }));
+      }
+
     })
   }
 
