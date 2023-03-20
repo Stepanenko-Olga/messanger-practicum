@@ -14,7 +14,7 @@ export class ChatsController {
         try {
             await this.api.create(data);
             await this.fetchChats();
-            router.go('/chats');
+            router.go('/messenger');
         } catch (e: any) {
             store.set('chats.error', e.message);
         }
@@ -22,14 +22,14 @@ export class ChatsController {
 
     async fetchChats() {
         try {
-        store.set('chats.isLoading', true);
-        const chats = await this.api.read();
-        store.set('chats.data', chats);
-        store.set('chats.isLoading', false); 
-    } catch (e: any) {
-        store.set('chats.error', e.message);
-    }       
-    }  
+            store.set('chats.isLoading', true);
+            const chats = await this.api.read();
+            store.set('chats.data', chats);
+            store.set('chats.isLoading', false);
+        } catch (e: any) {
+            store.set('chats.error', e.message);
+        }
+    }
 
 }
 

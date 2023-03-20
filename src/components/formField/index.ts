@@ -42,18 +42,22 @@ export class FormField extends Block {
   
   checkValidation(validationType: string) {  
     switch(validationType) {
-      case "login": this.validate(validationMasks.LOGIN); break;
-      case "password": this.validate(validationMasks.PASSWORD); break;
-      case "name": this.validate(validationMasks.NAME); break;
-      case "email": this.validate(validationMasks.EMAIL); break;
-      case "phone": this.validate(validationMasks.PHONE); break;
-    }       
+      case "login": this.validate(validationMasks.LOGIN, "Введите от 3 до 20 символов на латинице или цифр"); break;
+      case "password": this.validate(validationMasks.PASSWORD, "Введите от 8 до 40 символов, обязательно хотя бы одну заглавную букву и цифру"); break;
+      case "name": this.validate(validationMasks.NAME, "Первая буква должна быть заглавной, без пробелов, цифр, спецсимволов (допустим только дефис)"); break;
+      case "email": this.validate(validationMasks.EMAIL, "Укажите email латиницей, можно включать цифры и спецсимволы, обязательно должна быть @"); break;
+      case "phone": this.validate(validationMasks.PHONE, "Введите от 10 до 15 цифр" ); break;
+      case "message": (this.children.input as FormFieldInput).value
+      ? (this.children.error as Block).setProps({ title: undefined })
+      : (this.children.error as Block).setProps({ title: "Поле обязательно к заполнению" }); break;
+  } 
+          
   }
 
-  validate(mask: RegExp) {
+  validate(mask: RegExp, text: string) {
     mask.test((this.children.input as FormFieldInput).value) 
     ? (this.children.error as Block).setProps({title: undefined}) 
-    : (this.children.error as Block).setProps({title: "Поле содержит недопустимые символы"});
+    : (this.children.error as Block).setProps({title: text});
   }
 
   render() {  

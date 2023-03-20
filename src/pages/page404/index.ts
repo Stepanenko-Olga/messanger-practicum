@@ -14,7 +14,7 @@ export class Page404 extends Block {
     this.children.error = new ErrorPage({ errorCode: '404', errorMessage: 'Не туда попали' });
     this.children.returnLink = new Link({
       title: 'Назад к чатам',
-      to: '/chats',
+      to: '/messenger',
       router: Router,
     });
   }

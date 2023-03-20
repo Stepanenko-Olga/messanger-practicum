@@ -15,7 +15,7 @@ export class Page500 extends Block {
     this.children.error = new ErrorPage({ errorCode: '500', errorMessage: 'мы уже фиксим' });
     this.children.returnLink = new Link({
       title: 'Назад к чатам',
-      to: '/chats',
+      to: '/messenger',
       router: Router
     });
   }
