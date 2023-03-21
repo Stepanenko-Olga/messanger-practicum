@@ -8,6 +8,7 @@ import AuthController from '../../controllers/AuthController';
 import store, { withStore } from '../../utils/Store';
 import { ProfileExitRow } from './profileExitRow';
 import { Header } from '../../components/header';
+import { ProfileModalLink } from './profileModalLink';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -20,16 +21,17 @@ export class ProfilePage extends Block {
     AuthController.fetchUser();
     const user = store.getState().user?.data;
     this.element?.classList.add('container');
-    this.children.editAvatar = new EditAvatar({});
-    this.children.header = new Header({title: user?.first_name})
-    /* this.children.avaOpen = new ProfileLinkRow({
+    this.children.editAvatar = new EditAvatar({ display: "modal-hide" });
+    this.children.header = new Header({ title: user?.first_name })
+    this.children.avaOpen = new ProfileModalLink({
       title: 'Поменять аватар',
       events: {
-        click: () => { (this.children.editAvatar as Block).setProps({ display: "block" }) },
+        click: () => {
+          (this.children.editAvatar as Block).setProps({ display: "modal-show" })
+        },
       },
-    }), */
-
-    this.children.email = new ProfileInfoRow({ title: 'Почта', value: user?.email });
+    }),
+      this.children.email = new ProfileInfoRow({ title: 'Почта', value: user?.email });
     this.children.login = new ProfileInfoRow({ title: 'Логин', value: user?.login });
     this.children.firstName = new ProfileInfoRow({ title: 'Имя', value: user?.first_name });
     this.children.secondName = new ProfileInfoRow({ title: 'Фамилия', value: user?.second_name });

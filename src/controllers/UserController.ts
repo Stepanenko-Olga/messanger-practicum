@@ -39,6 +39,16 @@ export class UserController {
         }
     }
 
+    async editAvatar(data: FormData) {
+        try {
+            await this.api.editAvatar(data);
+            await AuthController.fetchUser();
+            router.go('/settings');
+        } catch (e: any) {
+            store.set('user.error', e.message);
+        }
+    }
+
 
 
 }

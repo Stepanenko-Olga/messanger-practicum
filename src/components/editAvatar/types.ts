@@ -1,3 +1,3 @@
 export interface EditAvatarProps {
-    display?: string;
+    display: string;
 } 
