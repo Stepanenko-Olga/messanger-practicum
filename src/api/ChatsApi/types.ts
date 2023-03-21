@@ -1,9 +1,9 @@
 import { User } from "../AuthApi/types";
 
 export interface LastMessage {
-    user?: User;
-    time?: string;
-    content?: string;
+  user?: User;
+  time?: string;
+  content?: string;
 }
 
 export interface Message {
@@ -24,17 +24,22 @@ export interface Message {
 }
 
 export interface Chat {
-    id: number,
-    title: string,
-    avatar: string,
-    unread_count: number,
-    last_message: LastMessage;
+  id: number,
+  title: string,
+  avatar: string,
+  unread_count: number,
+  last_message: LastMessage;
 }
 
 export interface CreateChatData {
-    title: string;
-  }
+  title: string;
+}
 
 export interface DeleteChatData {
-    chatId: number;
-  }
+  chatId: number;
+}
+
+export interface AddToChatData {
+  users?: number[] | [];
+  chatId?: number;
+}

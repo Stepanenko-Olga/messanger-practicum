@@ -38,7 +38,6 @@ export class EditAvatar extends Block {
       console.log(file.files[0])
       const data = new FormData();
       data.append('avatar', file.files[0]);
-      console.log(data);
       UserController.editAvatar(data);
     }
   }

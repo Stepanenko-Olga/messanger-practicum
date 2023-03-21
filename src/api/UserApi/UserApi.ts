@@ -1,5 +1,5 @@
 import BaseAPI from "../BaseApi/BaseApi";
-import { UpdateData, UpdatePassword } from "./types";
+import { SearchUserData, UpdateData, UpdatePassword } from "./types";
 
 export class UserAPI extends BaseAPI {
     constructor() {
@@ -21,6 +21,10 @@ export class UserAPI extends BaseAPI {
 
     editAvatar(data: FormData) {
         return this.http.put('/profile/avatar', data);
+    }
+
+    searchUser(data: SearchUserData) {
+        return this.http.post('/search', data);
     }
 
     create = undefined;

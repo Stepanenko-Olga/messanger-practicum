@@ -1,9 +1,11 @@
-import { UpdateData } from '../../../../api/UserApi/types';
+import { AddToChatData } from '../../../../api/ChatsApi/types';
 import { Button } from '../../../../components/button';
 import { FormField } from '../../../../components/formField';
+import  ChatsController  from '../../../../controllers/ChatsController';
 import UserController from '../../../../controllers/UserController';
 import Block from '../../../../utils/Block';
 import { printValues } from '../../../../utils/printFormData';
+import store from '../../../../utils/Store';
 import { submitValidation } from '../../../../utils/validation';
 import template from './addChatModal.hbs';
 import { AddChatModalProps } from './types';
@@ -27,7 +29,7 @@ export class AddChatModal extends Block {
     this.children.chat = new FormField({
       label: 'Логин',
       type: 'text',
-      name: 'userLogin',
+      name: 'login',
       validationType: "login"
     });
     this.children.submitButton = new Button({
@@ -44,11 +46,20 @@ export class AddChatModal extends Block {
 
 
   onSubmit() {
+    const chatId = store.getState().chats?.selectedChat?.id;    
     submitValidation(this.children);
     const values = printValues(this.children);
     const data = Object.fromEntries(values);
-    UserController.editUser(data as UpdateData);
+    UserController.searchUser(data);
+    const selectedUser = (store.getState().selectedUser);
+  
+    const formData: AddToChatData = {
+      users: selectedUser? [selectedUser?.id] : [],
+      chatId: chatId     
+    }  
+    ChatsController.putUser(formData);
   }
+
 
   render() {
     return this.compile(template, this.props);

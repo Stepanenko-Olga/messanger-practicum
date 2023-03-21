@@ -1,5 +1,5 @@
 import BaseAPI from '../BaseApi/BaseApi';
-import { CreateChatData, Chat } from './types';
+import { CreateChatData, Chat, AddToChatData } from './types';
 
 export class ChatsAPI extends BaseAPI {
     constructor() {
@@ -18,6 +18,12 @@ export class ChatsAPI extends BaseAPI {
     read(): Promise<Chat[]> {        
         return this.http.get('/');
     }
+
+    putUser(data: AddToChatData) {
+        return this.http.put('/users', data);
+    }
+
+
 
     async getToken(id: number): Promise<string> {
         const response = await this.http.post<{ token: string }>(`/token/${id}`);

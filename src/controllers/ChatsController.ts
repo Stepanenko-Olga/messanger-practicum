@@ -1,6 +1,6 @@
 import store from '../utils/Store';
 import API, { ChatsAPI } from '../api/ChatsApi/ChatsApi';
-import { CreateChatData } from '../api/ChatsApi/types';
+import { AddToChatData, CreateChatData } from '../api/ChatsApi/types';
 import router from '../utils/router/Router';
 import MessagesController from './MessagesController';
 
@@ -14,6 +14,16 @@ export class ChatsController {
     async create(data: CreateChatData) {
         try {
             await this.api.create(data);
+            await this.fetchChats();
+            router.go('/messenger');
+        } catch (e: any) {
+            store.set('chats.error', e.message);
+        }
+    }
+
+    async putUser(data: AddToChatData) {
+        try {
+            await this.api.putUser(data);
             await this.fetchChats();
             router.go('/messenger');
         } catch (e: any) {
@@ -37,7 +47,7 @@ export class ChatsController {
     }
 
     selectChat(id: number) {
-        const chat = store.getState().chats?.data.find((chat => chat.id === id));   
+        const chat = store.getState().chats?.data.find((chat => chat.id === id));
         store.set('chats.selectedChat', chat);
     }
 

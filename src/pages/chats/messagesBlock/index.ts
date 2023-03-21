@@ -68,14 +68,14 @@ const withSelectedChatMessages = withStore((state: State) => {
     return {
       messages: [],
       selectedChat: undefined,
-      userId: state.user?.data.id
+      userId: state.user?.data?.id
     };
   }
 
   return {
     messages: (state.messages?.data || {})[selectedChat.id] || [],
     selectedChat: state.chats?.selectedChat,
-    userId: state.user?.data.id
+    userId: state.user?.data?.id
   };
 });
 

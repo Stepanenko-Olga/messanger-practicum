@@ -1,7 +1,7 @@
 import store from '../utils/Store';
 import router from '../utils/router/Router';
 import API, { UserAPI } from '../api/UserApi/UserApi';
-import { UpdateData, UpdatePassword } from '../api/UserApi/types';
+import { SearchUserData, UpdateData, UpdatePassword } from '../api/UserApi/types';
 import AuthController from './AuthController';
 
 export class UserController {
@@ -15,6 +15,16 @@ export class UserController {
         try {
             await this.api.getUser(userId);
         } catch (e: any) {
+            console.log(e.message);
+        }
+    }
+
+    async searchUser(data: SearchUserData) {
+        try {
+            const user = await this.api.searchUser(data);
+            store.set('selectedUser', user);
+        }
+        catch (e: any) {
             console.log(e.message);
         }
     }
@@ -51,6 +61,12 @@ export class UserController {
 
 
 
+
+
 }
 
 export default new UserController();
+function then(arg0: (res: XMLHttpRequest) => any) {
+    throw new Error('Function not implemented.');
+}
+

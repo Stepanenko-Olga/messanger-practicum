@@ -14,6 +14,7 @@ export interface State {
     error: string;
     isLoading: boolean;
   },
+  selectedUser?: User;
   chats?: {
     data: Chat[];
     selectedChat?: Chat;
