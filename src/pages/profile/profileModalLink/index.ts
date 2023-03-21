@@ -4,11 +4,11 @@ import { ProfileModalLinkProps } from './types';
 
 export class ProfileModalLink extends Block<ProfileModalLinkProps> {
   constructor(props: ProfileModalLinkProps) {
-    super('span', props );
+    super('div', props );
   }
 
   init() {
-   
+    this.element?.classList.add("profile__ava");
   }
 
   render() {

@@ -2,13 +2,14 @@ import Block from '../../utils/Block';
 import template from './profile.hbs';
 import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';
-import { EditAvatar } from '../../components/editAvatar';
 import Router from '../../utils/router/Router';
 import AuthController from '../../controllers/AuthController';
 import store, { withStore } from '../../utils/Store';
 import { ProfileExitRow } from './profileExitRow';
 import { Header } from '../../components/header';
 import { ProfileModalLink } from './profileModalLink';
+import { EditAvatar } from '../../components/editAvatar';
+
 
 export class ProfilePage extends Block {
   constructor() {
@@ -20,11 +21,13 @@ export class ProfilePage extends Block {
   init() {
     AuthController.fetchUser();
     const user = store.getState().user?.data;
+    console.log(user?.avatar);
     this.element?.classList.add('container');
     this.children.editAvatar = new EditAvatar({ display: "modal-hide" });
     this.children.header = new Header({ title: user?.first_name })
     this.children.avaOpen = new ProfileModalLink({
       title: 'Поменять аватар',
+      avaPath: user?.avatar,
       events: {
         click: () => {
           (this.children.editAvatar as Block).setProps({ display: "modal-show" })
