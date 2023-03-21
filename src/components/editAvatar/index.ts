@@ -12,7 +12,7 @@ export class EditAvatar extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          this.onSubmit();
+          this.onSubmit(event);
         }
       },
     })
@@ -20,11 +20,6 @@ export class EditAvatar extends Block {
 
   init() {
     this.element?.classList.add(this.props.display);
-    this.children.editFile = new FormFieldInput({ 
-      type: 'file',
-      name: 'avatar',
-    });
-    this.children.editFile.element?.classList.add('edit-avatar')
     this.children.submitFileButton = new Button({
       title: 'Изменить',
       type: "submit",
@@ -36,20 +31,21 @@ export class EditAvatar extends Block {
     this.element?.classList.add(newProps.display);
     return true;
   }
+  //const fileTypes = ["jpg", "jpeg", "png"];
+/*   const fileName = file.files[0].name.toLowerCase();
+  const checkType = fileTypes.some(type => fileName.endsWith(type));
+      if (checkType) { */
 
-  onSubmit() {
-    const permittedFileTypes = ["jpg", "jpeg", "png"];
-    const file = document.querySelector(".edit-avatar") as any;
-    if (!file || !file.files.length) return;
-    const fileName = file.files[0].name.toLowerCase();
-    const isFileTypeOk = permittedFileTypes.some(type => fileName.endsWith(type));
-    if (isFileTypeOk) {
-      const formData = new FormData();
-                    formData.append("avatar", file.files[0]);
-                    UserController.editAvatar(formData);
-      return;
-  }
-
+  onSubmit() {   
+    const file = document.querySelector(".edit-avatar") as HTMLInputElement; // получаем наш input
+    if (!file) return;
+    if (file.files) {      
+      console.log(file.files[0])
+      const data = new FormData();
+      data.append('avatar', file.files[0]);
+      console.log(data);
+      UserController.editAvatar(data);     
+      }   
   }
 
   render() {
