@@ -1,5 +1,7 @@
+import { Button } from '../../../components/button';
 import Block from '../../../utils/Block';
 import { State, withStore } from '../../../utils/Store';
+import { AddChatModal } from './addChatModal';
 import { MessagesBody } from './messageBody';
 import template from './messagesBlock.hbs';
 import { MessagesFooter } from './messagesFooter';
@@ -18,6 +20,16 @@ export class MessagesBlockWithPops extends Block {
     this.children.messagesHeader = this.createHeader(this.props);
     this.children.messagesBody = this.createMessages(this.props);
     this.children.messagesFooter = this.createFooter(this.props);
+    this.children.addChatButton = new Button({
+      title: 'Добавить пользователя',
+      events: {
+        click: () => {
+          (this.children.addChat as Block).setProps({ display: "modal-show" })
+        },
+      },
+    });
+
+    this.children.addChat = new AddChatModal({ display: "modal-hide" });
   }
 
   protected componentDidUpdate(oldProps: MessagesBlockProps, newProps: MessagesBlockProps): boolean {

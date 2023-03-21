@@ -2,7 +2,6 @@ import { Button } from '../button';
 import Block from '../../utils/Block';
 import template from './editAvatar.hbs';
 import { EditAvatarProps } from './types';
-import { FormFieldInput } from '../formFieldInput';
 import UserController from '../../controllers/UserController';
 
 export class EditAvatar extends Block {
@@ -12,7 +11,7 @@ export class EditAvatar extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          this.onSubmit(event);
+          this.onSubmit();
         }
       },
     })
@@ -31,21 +30,17 @@ export class EditAvatar extends Block {
     this.element?.classList.add(newProps.display);
     return true;
   }
-  //const fileTypes = ["jpg", "jpeg", "png"];
-/*   const fileName = file.files[0].name.toLowerCase();
-  const checkType = fileTypes.some(type => fileName.endsWith(type));
-      if (checkType) { */
 
-  onSubmit() {   
+  onSubmit() {
     const file = document.querySelector(".edit-avatar") as HTMLInputElement; // получаем наш input
     if (!file) return;
-    if (file.files) {      
+    if (file.files) {
       console.log(file.files[0])
       const data = new FormData();
       data.append('avatar', file.files[0]);
       console.log(data);
-      UserController.editAvatar(data);     
-      }   
+      UserController.editAvatar(data);
+    }
   }
 
   render() {
