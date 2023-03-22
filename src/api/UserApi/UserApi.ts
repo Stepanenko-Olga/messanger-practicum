@@ -23,7 +23,7 @@ export class UserAPI extends BaseAPI {
         return this.http.put('/profile/avatar', data);
     }
 
-    searchUser(data: SearchUserData) {
+    searchUser(data: SearchUserData):  Promise<any> {
         return this.http.post('/search', data);
     }
 

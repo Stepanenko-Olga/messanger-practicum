@@ -21,8 +21,11 @@ export class UserController {
 
     async searchUser(data: SearchUserData) {
         try {
-            const user = await this.api.searchUser(data);
-            store.set('selectedUser', user);
+            store.set('user.isLoading', true);
+            const response = await this.api.searchUser(data);
+            const selectedUser = (JSON.parse(JSON.stringify(response))[0]);
+            store.set('user.selectedUser', selectedUser);
+            store.set('user.isLoading', false); 
         }
         catch (e: any) {
             console.log(e.message);

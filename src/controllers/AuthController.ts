@@ -39,7 +39,7 @@ export class AuthController {
     }
 
     async logout() {
-        try {    
+        try {
             await this.api.logout();
             store.set('user.data', undefined);
             router.go('/');

@@ -13,8 +13,8 @@ export interface State {
     data: User;
     error: string;
     isLoading: boolean;
+    selectedUser?: User;
   },
-  selectedUser?: User;
   chats?: {
     data: Chat[];
     selectedChat?: Chat;

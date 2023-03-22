@@ -1,7 +1,7 @@
 import { AddToChatData } from '../../../../api/ChatsApi/types';
 import { Button } from '../../../../components/button';
 import { FormField } from '../../../../components/formField';
-import  ChatsController  from '../../../../controllers/ChatsController';
+import ChatsController from '../../../../controllers/ChatsController';
 import UserController from '../../../../controllers/UserController';
 import Block from '../../../../utils/Block';
 import { printValues } from '../../../../utils/printFormData';
@@ -46,18 +46,22 @@ export class AddChatModal extends Block {
 
 
   onSubmit() {
-    const chatId = store.getState().chats?.selectedChat?.id;    
+    const chatId = store.getState().chats?.selectedChat?.id;
+    console.log(chatId);
     submitValidation(this.children);
     const values = printValues(this.children);
     const data = Object.fromEntries(values);
-    UserController.searchUser(data);
-    const selectedUser = (store.getState().selectedUser);
-  
-    const formData: AddToChatData = {
-      users: selectedUser? [selectedUser?.id] : [],
-      chatId: chatId     
-    }  
-    ChatsController.putUser(formData);
+    UserController.searchUser(data).finally(() => {
+      const selectedUser = (store.getState().user?.selectedUser);
+      console.log(selectedUser);
+      console.log(selectedUser ? selectedUser.id : "sddvd");
+
+      const data: AddToChatData = {
+        users: selectedUser ? [selectedUser.id] : [],
+        chatId: chatId
+      }  
+      ChatsController.putUser(data);
+    });
   }
 
 
