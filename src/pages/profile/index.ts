@@ -4,11 +4,11 @@ import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';
 import Router from '../../utils/router/Router';
 import AuthController from '../../controllers/AuthController';
-import store, { withStore } from '../../utils/Store';
+import store, { withStore } from '../../utils/Store/Store';
 import { ProfileExitRow } from './profileExitRow';
 import { Header } from '../../components/header';
 import { ProfileModalLink } from './profileModalLink';
-import { EditAvatar } from '../../components/editAvatar';
+import { EditAvatar } from './editAvatarModal';
 
 
 export class ProfilePage extends Block {

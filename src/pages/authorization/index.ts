@@ -2,7 +2,7 @@ import template from './authorization.hbs';
 import Block from '../../utils/Block';
 import { Button } from '../../components/button';
 import { Link } from '../../components/link';
-import { printValues } from '../../utils/printFormData';
+import { parseData } from '../../utils/parseFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
 import Router from '../../utils/router/Router';
@@ -52,7 +52,7 @@ export class Authorization extends Block {
 
   onSubmit() {
     submitValidation(this.children);
-    const values = printValues(this.children);
+    const values = parseData(this.children);
     const data = Object.fromEntries(values);
     AuthController.signin(data as SigninData);
   }

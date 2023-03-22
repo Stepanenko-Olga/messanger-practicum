@@ -2,7 +2,7 @@ import { FormField } from "../components/formField";
 import { FormFieldInput } from "../components/formFieldInput";
 import Block from "./Block";
 
-export const printValues = (props: Record<string, Block | Block[]>) => {
+export const parseData = (props: Record<string, Block | Block[]>) => {
   let fields: FormField[] = [];
   let inputs: FormFieldInput[] = [];
   const formData: Record<string, string>[][] = [];
@@ -20,6 +20,6 @@ export const printValues = (props: Record<string, Block | Block[]>) => {
     form = [inputs[i].name, inputs[i].value];
     formData.push(form);
   }
-  return(formData);
+  return (formData);
 
 }

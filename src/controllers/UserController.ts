@@ -1,4 +1,4 @@
-import store from '../utils/Store';
+import store from '../utils/Store/Store';
 import router from '../utils/router/Router';
 import API, { UserAPI } from '../api/UserApi/UserApi';
 import { SearchUserData, UpdateData, UpdatePassword } from '../api/UserApi/types';
@@ -25,7 +25,7 @@ export class UserController {
             const response = await this.api.searchUser(data);
             const selectedUser = (JSON.parse(JSON.stringify(response))[0]);
             store.set('user.selectedUser', selectedUser);
-            store.set('user.isLoading', false); 
+            store.set('user.isLoading', false);
         }
         catch (e: any) {
             console.log(e.message);

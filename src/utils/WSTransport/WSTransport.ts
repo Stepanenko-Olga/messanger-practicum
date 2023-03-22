@@ -1,11 +1,6 @@
-import { EventBus } from './EventBus';
+import { EventBus } from '../EventBus';
+import { WSTransportEvents } from './const';
 
-export enum WSTransportEvents {
-    Connected = 'connected',
-    Error = 'error',
-    Message = 'message',
-    Close = 'close',
-}
 
 export default class WSTransport extends EventBus {
     private socket: WebSocket | null = null;

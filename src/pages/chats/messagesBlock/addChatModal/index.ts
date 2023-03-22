@@ -4,8 +4,8 @@ import { FormField } from '../../../../components/formField';
 import ChatsController from '../../../../controllers/ChatsController';
 import UserController from '../../../../controllers/UserController';
 import Block from '../../../../utils/Block';
-import { printValues } from '../../../../utils/printFormData';
-import store from '../../../../utils/Store';
+import { parseData } from '../../../../utils/parseFormData';
+import store from '../../../../utils/Store/Store';
 import { submitValidation } from '../../../../utils/validation';
 import template from './addChatModal.hbs';
 import { AddChatModalProps } from './types';
@@ -49,7 +49,7 @@ export class AddChatModal extends Block {
     const chatId = store.getState().chats?.selectedChat?.id;
     console.log(chatId);
     submitValidation(this.children);
-    const values = printValues(this.children);
+    const values = parseData(this.children);
     const data = Object.fromEntries(values);
     UserController.searchUser(data).finally(() => {
       const selectedUser = (store.getState().user?.selectedUser);
@@ -59,7 +59,7 @@ export class AddChatModal extends Block {
       const data: AddToChatData = {
         users: selectedUser ? [selectedUser.id] : [],
         chatId: chatId
-      }  
+      }
       ChatsController.putUser(data);
     });
   }

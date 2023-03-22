@@ -1,7 +1,8 @@
 
 import { Message } from '../api/ChatsApi/types';
-import store from '../utils/Store';
-import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
+import store from '../utils/Store/Store';
+import { WSTransportEvents } from '../utils/WSTransport/const';
+import WSTransport from '../utils/WSTransport/WSTransport';
 
 
 
@@ -65,7 +66,7 @@ class MessagesController {
 
         messagesToAdd = [...currentMessages, ...messagesToAdd];
 
-        store.set(`messages.data.${id}`, messagesToAdd);     
+        store.set(`messages.data.${id}`, messagesToAdd);
     }
 
     private onClose(id: number) {

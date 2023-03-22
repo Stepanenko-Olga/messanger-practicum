@@ -3,8 +3,8 @@ import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
 import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
-import { printValues } from '../../utils/printFormData';
-import store from '../../utils/Store';
+import { parseData } from '../../utils/parseFormData';
+import store from '../../utils/Store/Store';
 import { submitValidation } from '../../utils/validation';
 import template from './editInfo.hbs';
 
@@ -75,7 +75,7 @@ export class EditInfo extends Block {
 
   onSubmit() {
     submitValidation(this.children);
-    const values = printValues(this.children);
+    const values = parseData(this.children);
     const data = Object.fromEntries(values);
     UserController.editUser(data as UpdateData);
   }

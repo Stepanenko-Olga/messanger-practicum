@@ -1,6 +1,6 @@
 import { Button } from '../../../components/button';
 import Block from '../../../utils/Block';
-import { State, withStore } from '../../../utils/Store';
+import { State, withStore } from '../../../utils/Store/Store';
 import { AddChatModal } from './addChatModal';
 import { MessagesBody } from './messageBody';
 import template from './messagesBlock.hbs';

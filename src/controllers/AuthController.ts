@@ -1,5 +1,5 @@
 import API, { AuthAPI } from '../api/AuthApi/AuthApi';
-import store from '../utils/Store';
+import store from '../utils/Store/Store';
 import router from '../utils/router/Router';
 import { SigninData, SignupData } from '../api/AuthApi/types';
 

@@ -3,7 +3,7 @@ import Block from '../../../../utils/Block';
 import { MessagesBodyProps } from './types';
 import { MessageMy } from './messageMy';
 import { MessageAnother } from './messageAnother';;
-import store from '../../../../utils/Store';
+import store from '../../../../utils/Store/Store';
 import { Message } from "../../../../api/ChatsApi/types";
 
 export class MessagesBody extends Block<MessagesBodyProps> {
@@ -13,7 +13,7 @@ export class MessagesBody extends Block<MessagesBodyProps> {
 
 
 
-  init() {    
+  init() {
     this.element?.classList.add('messages__body');
     this.children.messages = [];
     this.props.messages.map((message: Message) => {

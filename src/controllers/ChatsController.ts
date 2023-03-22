@@ -1,4 +1,4 @@
-import store from '../utils/Store';
+import store from '../utils/Store/Store';
 import API, { ChatsAPI } from '../api/ChatsApi/ChatsApi';
 import { AddToChatData, CreateChatData } from '../api/ChatsApi/types';
 import router from '../utils/router/Router';

@@ -1,4 +1,4 @@
-import HTTPTransport from "../../process/HTTPTransport/HTTPTransport";
+import HTTPTransport from "../../utils/HTTPTransport/HTTPTransport";
 
 
 export default abstract class BaseAPI {

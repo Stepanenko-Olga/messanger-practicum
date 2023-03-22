@@ -1,8 +1,10 @@
-import { Button } from '../button';
-import Block from '../../utils/Block';
-import template from './editAvatar.hbs';
+
+import { Button } from '../../../components/button';
+import UserController from '../../../controllers/UserController';
+import Block from '../../../utils/Block';
+import template from './editAvatarModal.hbs';
 import { EditAvatarProps } from './types';
-import UserController from '../../controllers/UserController';
+
 
 export class EditAvatar extends Block {
   constructor(props: EditAvatarProps) {

@@ -2,7 +2,7 @@ import template from './registration.hbs';
 import Block from '../../utils/Block';
 import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
-import { printValues } from '../../utils/printFormData';
+import { parseData } from '../../utils/parseFormData';
 import { submitValidation } from '../../utils/validation';
 import AuthController from '../../controllers/AuthController';
 import { SignupData } from '../../api/AuthApi/types';
@@ -73,7 +73,7 @@ export class Registration extends Block {
 
   onSubmit() {
     submitValidation(this.children);
-    const values = printValues(this.children);
+    const values = parseData(this.children);
     const data = Object.fromEntries(values);
     AuthController.signup(data as SignupData);
   }
