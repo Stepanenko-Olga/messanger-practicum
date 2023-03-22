@@ -16,7 +16,9 @@ export class AuthController {
             await this.fetchUser();
             router.go('/messenger');
         } catch (e: any) {
-            store.set('user.error', e.message);
+            console.log(e);
+            if (e.reason === "User already in system") router.go("/messenger");
+            else store.set('user.error', e.message);
         }
     }
 
