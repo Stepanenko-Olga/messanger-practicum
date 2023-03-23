@@ -58,9 +58,6 @@ export class AddChatModal extends Block {
       const data = Object.fromEntries(values);
       UserController.searchUser(data).finally(() => {
         const selectedUser = (store.getState().user?.selectedUser);
-        console.log(selectedUser);
-        console.log(selectedUser ? selectedUser.id : "sddvd");
-
         const data: UserChatData = {
           users: selectedUser ? [selectedUser.id] : [],
           chatId: chatId

@@ -8,6 +8,7 @@ import { Message } from "../../../../api/ChatsApi/types";
 import { Button } from '../../../../components/button';
 import { AddChatModal } from '../addChatModal';
 import { RemoveFromChatModal } from '../removeFromChatModal';
+import ChatsController from '../../../../controllers/ChatsController';
 
 export class MessagesBody extends Block<MessagesBodyProps> {
   constructor(props: MessagesBodyProps) {
@@ -30,6 +31,15 @@ export class MessagesBody extends Block<MessagesBodyProps> {
         events: {
           click: () => {
             (this.children.removeFromChat as Block).setProps({ display: "modal-show" })
+          },
+        },
+      });
+      this.children.deleteChatButton = new Button({
+        title: 'Удалить чат',
+        events: {
+          click: () => {
+            const chatId = store.getState().chats?.selectedChat?.id;
+            if (chatId) ChatsController.deleteChat({ chatId });
           },
         },
       });

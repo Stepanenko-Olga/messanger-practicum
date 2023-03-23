@@ -15,7 +15,7 @@ export class UserController {
         try {
             await this.api.getUser(userId);
         } catch (e: any) {
-            console.log(e.message);
+            store.set('user.error', e.message);
         }
     }
 
@@ -28,7 +28,7 @@ export class UserController {
             store.set('user.isLoading', false);
         }
         catch (e: any) {
-            console.log(e.message);
+            store.set('user.error', e.message);
         }
     }
 

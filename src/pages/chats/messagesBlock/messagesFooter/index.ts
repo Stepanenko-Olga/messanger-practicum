@@ -29,8 +29,7 @@ export class MessagesFooter extends Block {
         click: () => {        
           if(submitValidation(this.children))  { 
           const values = parseData(this.children);
-          const data = Object.fromEntries(values);
-          console.log(data);
+          const data = Object.fromEntries(values);    
           MessagesController.sendMessage(this.props.selectedChat!.id, data.message); }
         }
       }

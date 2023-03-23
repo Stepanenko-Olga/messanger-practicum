@@ -37,7 +37,6 @@ export class FormField extends Block {
 
       },
     });
-    console.log(this.props.value);
     this.children.error = new ErrorMessage({ title: this.props.errorText });
   }
 

@@ -22,7 +22,6 @@ export class ProfilePage extends Block {
   init() {
     AuthController.fetchUser();
     const user = store.getState().user?.data;
-    console.log(user?.avatar);
     this.element?.classList.add('container');
     this.children.editAvatar = new EditAvatar({ display: "modal-hide" });
     this.children.header = new Header({ title: user?.first_name })

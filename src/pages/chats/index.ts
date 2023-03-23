@@ -5,12 +5,15 @@ import { MessagesBlock } from './messagesBlock';
 import ChatsController from '../../controllers/ChatsController';
 import store, { withStore } from '../../utils/Store/Store';
 
+
 export class ChatsPage extends Block {
   constructor() {
-    super('box');
+    super('box');   
   }
 
+
   init() {
+    console.log(store.getState().chats?.data);
     this.element?.classList.add('container');
     this.children.chatsBlock = new ChatsBlock({ chats: [] });
     this.children.messagesBlock = new MessagesBlock({});
@@ -18,9 +21,8 @@ export class ChatsPage extends Block {
       const chats = store.getState().chats?.data;
       (this.children.chatsBlock as Block).setProps({ chats });
     });
-
-
   }
+
   render() {
     return this.compile(template, this.props);
   }

@@ -5,11 +5,17 @@ import { Link } from '../../../components/link';
 import Router from '../../../utils/router/Router';
 import { ChatsBlockProps } from './types';
 import ChatsController from '../../../controllers/ChatsController';
+import store from '../../../utils/Store/Store';
+import { StoreEvents } from '../../../utils/Store/const';
 
 
 export class ChatsBlock extends Block<ChatsBlockProps> {
   constructor(props: ChatsBlockProps) {
     super('box', props);
+    store.on(StoreEvents.Updated, () => {
+      const chats = store.getState().chats?.data;
+      this.setProps(chats);
+    });
   }
 
   init() {
