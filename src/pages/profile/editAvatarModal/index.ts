@@ -14,6 +14,9 @@ export class EditAvatar extends Block {
         submit: (event: Event) => {
           event.preventDefault();
           this.onSubmit();
+        },
+        reset: (event: Event) => {
+          this.onReset();
         }
       },
     })
@@ -33,12 +36,6 @@ export class EditAvatar extends Block {
   protected componentDidUpdate(oldProps: EditAvatarProps, newProps: EditAvatarProps): boolean {
     this.element?.classList.remove(oldProps.display);
     this.element?.classList.add(newProps.display);
-    if (this.props.display === "modal-show") {
-      const close = document.querySelector(".close") as HTMLInputElement;
-      close.addEventListener('click', () => {     
-        this.setProps({ display: "modal-hide" })
-      });
-    }
     return true;
   }
 
@@ -46,6 +43,7 @@ export class EditAvatar extends Block {
 
   onSubmit() {
     const file = document.querySelector(".edit-avatar") as HTMLInputElement; // получаем наш input
+    console.log("ava ");
     if (!file) return;
     if (file.files) {
       const data = new FormData();
@@ -53,6 +51,10 @@ export class EditAvatar extends Block {
       UserController.editAvatar(data);
       this.setProps({ display: "modal-hide" });
     }
+  }
+
+  onReset() {
+    this.setProps({ display: "modal-hide" });
   }
 
   render() {

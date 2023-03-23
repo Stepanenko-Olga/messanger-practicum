@@ -13,9 +13,12 @@ export class CreateChatModal extends Block {
     super('form', props);
     this.setProps({
       events: {
-        submit: (event: Event) => {      
+        submit: (event: Event) => {
           event.preventDefault();
           this.onSubmit();
+        },
+        reset: (event: Event) => {
+          this.onReset();
         }
       }
     })
@@ -37,26 +40,22 @@ export class CreateChatModal extends Block {
 
   protected componentDidUpdate(oldProps: createChatModalProps, newProps: createChatModalProps): boolean {
     this.element?.classList.remove(oldProps.display);
-    this.element?.classList.add(newProps.display);
-    if (this.props.display === "modal-show") {
-      const close = document.querySelector(".close") as HTMLInputElement;
-      console.log(close);
-      close.addEventListener('click', () => {
-        console.log(close);
-        this.setProps({ display: "modal-hide" })
-      });
-    }
+    this.element?.classList.add(newProps.display);    
     return true;
   }
 
 
-  onSubmit() {
+  onSubmit() {   
     if (submitValidation(this.children)) {
       const values = parseData(this.children);
       const data = Object.fromEntries(values);
       if (data.title) ChatsController.create(data);
       this.setProps({ display: "modal-hide" });
-    };
+    }   
+  }
+
+  onReset() {
+    this.setProps({ display: "modal-hide" });
   }
 
 

@@ -19,6 +19,9 @@ export class RemoveFromChatModal extends Block {
         submit: (event: Event) => {
           event.preventDefault();
           this.onSubmit();
+        },
+        reset: (event: Event) => {
+          this.onReset();
         }
       }
     })
@@ -41,12 +44,6 @@ export class RemoveFromChatModal extends Block {
   protected componentDidUpdate(oldProps: RemoveFromChatModalProps, newProps: RemoveFromChatModalProps): boolean {
     this.element?.classList.remove(oldProps.display);
     this.element?.classList.add(newProps.display);
-    if (this.props.display === "modal-show") {
-      const close = document.querySelector(".close") as HTMLInputElement;
-      close.addEventListener('click', () => {
-        this.setProps({ display: "modal-hide" })
-      });
-    }
     return true;
   }
 
@@ -67,6 +64,10 @@ export class RemoveFromChatModal extends Block {
       });
     }
 
+  }
+
+  onReset() {
+    this.setProps({ display: "modal-hide" });
   }
 
 
