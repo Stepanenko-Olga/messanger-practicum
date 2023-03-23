@@ -37,8 +37,11 @@ export class FormField extends Block {
 
       },
     });
+    console.log(this.props.value);
     this.children.error = new ErrorMessage({ title: this.props.errorText });
   }
+
+
 
   checkValidation(validationType: string) {
     switch (validationType) {
@@ -47,10 +50,13 @@ export class FormField extends Block {
       case "name": this.validate(validationMasks.NAME, "Первая буква должна быть заглавной, без пробелов, цифр, спецсимволов (допустим только дефис)"); break;
       case "email": this.validate(validationMasks.EMAIL, "Укажите email латиницей, можно включать цифры и спецсимволы, обязательно должна быть @"); break;
       case "phone": this.validate(validationMasks.PHONE, "Введите от 10 до 15 цифр"); break;
-      case "message": (this.children.input as FormFieldInput).value
-        ? (this.children.error as Block).setProps({ title: undefined })
-        : (this.children.error as Block).setProps({ title: "Поле обязательно к заполнению" }); break;
+      case "message": this.validate(validationMasks.REQUIRED, "Поле обязательно к заполнению"); break;
     }
+
+    /* this.props.value
+      ? (this.children.error as Block).setProps({ title: undefined })
+      : (this.children.error as Block).setProps({ title: "Поле обязательно к заполнению" }); break;
+  } */
 
   }
 

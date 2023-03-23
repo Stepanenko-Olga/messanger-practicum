@@ -38,7 +38,7 @@ function checkValidation(field: FormField) {
       ? (field.children.error as Block).setProps({ title: undefined })
       : (field.children.error as Block).setProps({ title: "Введите от 10 до 15 цифр" }); break;
 
-    case "message": (field.children.input as FormFieldInput).value
+    case "message": validationMasks.REQUIRED.test((field.children.input as FormFieldInput).value)
       ? (field.children.error as Block).setProps({ title: undefined })
       : (field.children.error as Block).setProps({ title: "Поле обязательно к заполнению" }); break;
   }

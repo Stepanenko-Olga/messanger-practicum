@@ -4,4 +4,5 @@ export const validationMasks = {
     EMAIL: /^\S+@\S+$/,
     PASSWORD: /.*[A-ZА-Я1-9].*[A-ZА-Я1-9].*/,
     PHONE: /^\+?\d{9,14}$/,
+    REQUIRED: /[^\s]/,
 }
