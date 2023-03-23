@@ -26,7 +26,7 @@
 ## **Используемы технологии и библиотеки:**
 - макет в figma: https://www.figma.com/file/onuQUxozDxxjt5VfCWXJfj/sprint_1?node-id=0%3A1&t=XBTzXHQOab8NVBok-0.
 - репозиторий github: https://github.com/StepanenkoOlgaV/middle.messenger.praktikum.yandex.
-- задеплоеный проект netlify: https://endearing-klepon-cdfcb6.netlify.app.
+- задеплоеный проект netlify: https://deploy-preview-4--endearing-klepon-cdfcb6.netlify.app/ 
 - API проекта: https://ya-praktikum.tech/api/v2
 
 - express, 
