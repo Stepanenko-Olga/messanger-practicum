@@ -19,17 +19,9 @@ export class MessagesBlockWithPops extends Block {
     this.element?.classList.add('messages');
     this.children.messagesHeader = this.createHeader(this.props);
     this.children.messagesBody = this.createMessages(this.props);
-    this.children.messagesFooter = this.createFooter(this.props);
-    this.children.addChatButton = new Button({
-      title: 'Добавить пользователя',
-      events: {
-        click: () => {
-          (this.children.addChat as Block).setProps({ display: "modal-show" })
-        },
-      },
-    });
+    this.children.messagesFooter = this.createFooter(this.props);    
 
-    this.children.addChat = new AddChatModal({ display: "modal-hide" });
+
   }
 
   protected componentDidUpdate(oldProps: MessagesBlockProps, newProps: MessagesBlockProps): boolean {
@@ -47,7 +39,7 @@ export class MessagesBlockWithPops extends Block {
   }
 
   private createMessages(props: MessagesBlockProps) {
-    return new MessagesBody({ messages: [...props.messages] });
+    return new MessagesBody({ messages: [...props.messages], selectedChat: props.selectedChat });
   }
 
   private createFooter(props: MessagesBlockProps) {

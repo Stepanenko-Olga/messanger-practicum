@@ -1,5 +1,6 @@
-import { Message } from "../../../../api/ChatsApi/types";
+import { Chat, Message } from "../../../../api/ChatsApi/types";
 
 export interface MessagesBodyProps {
-  messages: Message[]; 
+  messages: Message[];
+  selectedChat?: Chat;
 }
