@@ -23,7 +23,7 @@ export class UserController {
         try {
             store.set('user.isLoading', true);
             const response = await this.api.searchUser(data);
-            const selectedUser = (JSON.parse(JSON.stringify(response))[0]);
+            const selectedUser = JSON.parse(JSON.stringify(response))[0];
             store.set('user.selectedUser', selectedUser);
             store.set('user.isLoading', false);
         }
