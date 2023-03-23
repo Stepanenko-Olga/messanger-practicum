@@ -25,42 +25,36 @@ export class Registration extends Block {
     this.children.formInputEmail = new FormField({
       label: 'Почта',
       name: 'email',
-      value: 'pochta@yandex.ru',
       type: 'text',
       validationType: "email"
     });
     this.children.formInputLogin = new FormField({
       label: 'Логин',
       name: 'login',
-      value: 'ivanivanov',
       type: 'text',
       validationType: "login"
     });
     this.children.formInputFirstName = new FormField({
       label: 'Имя',
       name: 'first_name',
-      value: 'Иван',
       type: 'text',
       validationType: "name"
     });
     this.children.formInputSecondName = new FormField({
       label: 'Фамилия',
       name: 'second_name',
-      value: 'Иванов',
       type: 'text',
       validationType: "name"
     });
     this.children.formInputPhone = new FormField({
       label: 'Телефон',
       name: 'phone',
-      value: '+7 (910) 123 45 67',
       type: 'text',
       validationType: "phone"
     });
     this.children.formInputPassword = new FormField({
       label: 'Пароль',
       name: 'password',
-      value: '******',
       type: 'password',
       validationType: "password"
     });

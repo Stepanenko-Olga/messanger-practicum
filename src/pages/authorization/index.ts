@@ -28,14 +28,12 @@ export class Authorization extends Block {
     this.children.login = new FormField({
       label: 'Логин',
       name: 'login',
-      value: 'ivanivanov',
       type: 'text',
       validationType: "login"
     })
     this.children.password = new FormField({
       label: 'Пароль',
       name: 'password',
-      value: '******',
       type: 'password',
       validationType: "password"
     });
