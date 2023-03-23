@@ -9,6 +9,7 @@ import { ProfileExitRow } from './profileExitRow';
 import { Header } from '../../components/header';
 import { ProfileModalLink } from './profileModalLink';
 import { EditAvatar } from './editAvatarModal';
+import { Link } from '../../components/link';
 
 
 export class ProfilePage extends Block {
@@ -57,6 +58,11 @@ export class ProfilePage extends Block {
           AuthController.logout();
         }
       }
+    });
+    this.children.returnLink = new Link({
+      title: 'Назад к чатам',
+      to: '/messenger',
+      router: Router,
     });
   }
 
