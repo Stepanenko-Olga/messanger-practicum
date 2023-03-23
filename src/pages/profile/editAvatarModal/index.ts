@@ -43,7 +43,6 @@ export class EditAvatar extends Block {
 
   onSubmit() {
     const file = document.querySelector(".edit-avatar") as HTMLInputElement; // получаем наш input
-    console.log("ava ");
     if (!file) return;
     if (file.files) {
       const data = new FormData();

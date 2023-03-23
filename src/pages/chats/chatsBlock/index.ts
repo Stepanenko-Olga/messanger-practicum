@@ -37,8 +37,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
         count: chat.unread_count,
         id: chat.id,
         events: {
-          click: () => {
-            console.log(props.chats);
+          click: () => {        
             ChatsController.selectChat(chat.id);
           }
         }
