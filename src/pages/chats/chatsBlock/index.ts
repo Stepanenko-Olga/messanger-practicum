@@ -7,6 +7,7 @@ import { ChatsBlockProps } from './types';
 import ChatsController from '../../../controllers/ChatsController';
 import store from '../../../utils/Store/Store';
 import { StoreEvents } from '../../../utils/Store/const';
+import { ChatsProfile } from './chatsProfile';
 
 
 export class ChatsBlock extends Block<ChatsBlockProps> {
@@ -20,12 +21,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
 
   init() {
     this.element?.classList.add('chats');
-    this.children.chatsProfileLink = new Link({
-      title: 'Профиль >',
-      to: '/settings',
-      router: Router,
-    });
-    
+    this.children.chatsProfile = new ChatsProfile();    
     this.children.chatsCards = this.createChats(this.props);
   }
 
