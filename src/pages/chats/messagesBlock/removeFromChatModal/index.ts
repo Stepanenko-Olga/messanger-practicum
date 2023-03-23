@@ -7,12 +7,12 @@ import Block from '../../../../utils/Block';
 import { parseData } from '../../../../utils/parseFormData';
 import store from '../../../../utils/Store/Store';
 import { submitValidation } from '../../../../utils/validation';
-import template from './addChatModal.hbs';
-import { AddChatModalProps } from './types';
+import template from './removeFromChatModal.hbs';
+import { RemoveFromChatModalProps } from './types';
 
 
-export class AddChatModal extends Block {
-  constructor(props: AddChatModalProps) {
+export class RemoveFromChatModal extends Block {
+  constructor(props: RemoveFromChatModalProps) {
     super('form', props);
     this.setProps({
       events: {
@@ -33,12 +33,12 @@ export class AddChatModal extends Block {
       validationType: "login"
     });
     this.children.submitButton = new Button({
-      title: 'Добавить',
+      title: 'Удалить',
       type: "submit",
     });
   }
 
-  protected componentDidUpdate(oldProps: AddChatModalProps, newProps: AddChatModalProps): boolean {
+  protected componentDidUpdate(oldProps: RemoveFromChatModalProps, newProps: RemoveFromChatModalProps): boolean {
     this.element?.classList.remove(oldProps.display);
     this.element?.classList.add(newProps.display);
     if (this.props.display === "modal-show") {
@@ -58,14 +58,11 @@ export class AddChatModal extends Block {
       const data = Object.fromEntries(values);
       UserController.searchUser(data).finally(() => {
         const selectedUser = (store.getState().user?.selectedUser);
-        console.log(selectedUser);
-        console.log(selectedUser ? selectedUser.id : "sddvd");
-
         const data: UserChatData = {
           users: selectedUser ? [selectedUser.id] : [],
           chatId: chatId
         }
-        if (data.chatId && data.users?.length) ChatsController.putUser(data);
+        if (data.chatId && data.users?.length) ChatsController.removeUser(data);
         this.setProps({ display: "modal-hide" });
       });
     }

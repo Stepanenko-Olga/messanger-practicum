@@ -1,6 +1,5 @@
 import template from './chatsBlock.hbs';
 import Block from '../../../utils/Block';
-import { ChatsSearch } from './chatsSearch';
 import { ChatsCard } from './chatsCard';
 import { Link } from '../../../components/link';
 import Router from '../../../utils/router/Router';
@@ -20,11 +19,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
       to: '/settings',
       router: Router,
     });
-    this.children.chatsSearch = new ChatsSearch({
-      type: 'text',
-      name: 'name',
-      placeholder: 'Поиск',
-    });
+    
     this.children.chatsCards = this.createChats(this.props);
   }
 

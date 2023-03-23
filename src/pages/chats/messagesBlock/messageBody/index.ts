@@ -7,6 +7,7 @@ import store from '../../../../utils/Store/Store';
 import { Message } from "../../../../api/ChatsApi/types";
 import { Button } from '../../../../components/button';
 import { AddChatModal } from '../addChatModal';
+import { RemoveFromChatModal } from '../removeFromChatModal';
 
 export class MessagesBody extends Block<MessagesBodyProps> {
   constructor(props: MessagesBodyProps) {
@@ -15,7 +16,7 @@ export class MessagesBody extends Block<MessagesBodyProps> {
 
   init() {
     this.element?.classList.add('messages__body');
-    if (this.props.selectedChat)
+    if (this.props.selectedChat) {
       this.children.addChatButton = new Button({
         title: 'Добавить пользователя',
         events: {
@@ -24,6 +25,15 @@ export class MessagesBody extends Block<MessagesBodyProps> {
           },
         },
       });
+      this.children.removeFromChatButton = new Button({
+        title: 'Удалить пользователя',
+        events: {
+          click: () => {
+            (this.children.removeFromChat as Block).setProps({ display: "modal-show" })
+          },
+        },
+      });
+    }
     this.children.messages = [];
     this.props.messages.map((message: Message) => {
       if (message.user_id === store.getState().user?.data.id) {
@@ -34,6 +44,7 @@ export class MessagesBody extends Block<MessagesBodyProps> {
 
     })
     this.children.addChat = new AddChatModal({ display: "modal-hide" });
+    this.children.removeFromChat = new RemoveFromChatModal({ display: "modal-hide" });
   }
 
   render() {

@@ -1,6 +1,6 @@
 import store from '../utils/Store/Store';
 import API, { ChatsAPI } from '../api/ChatsApi/ChatsApi';
-import { AddToChatData, CreateChatData } from '../api/ChatsApi/types';
+import { CreateChatData, DeleteChatData, UserChatData } from '../api/ChatsApi/types';
 import router from '../utils/router/Router';
 import MessagesController from './MessagesController';
 
@@ -21,9 +21,30 @@ export class ChatsController {
         }
     }
 
-    async putUser(data: AddToChatData) {
+    async deleteChat(data: DeleteChatData) {
+        try {
+            await this.api.deleteChat(data);
+            await this.fetchChats();
+            router.go('/messenger');
+        } catch (e: any) {
+            store.set('chats.error', e.message);
+        }
+
+    }
+
+    async putUser(data: UserChatData) {
         try {
             await this.api.putUser(data);
+            await this.fetchChats();
+            router.go('/messenger');
+        } catch (e: any) {
+            store.set('chats.error', e.message);
+        }
+    }
+
+    async removeUser(data: UserChatData) {
+        try {
+            await this.api.removeUser(data);
             await this.fetchChats();
             router.go('/messenger');
         } catch (e: any) {

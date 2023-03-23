@@ -39,7 +39,7 @@ export interface DeleteChatData {
   chatId: number;
 }
 
-export interface AddToChatData {
+export interface UserChatData {
   users?: number[] | [];
   chatId?: number;
 }
