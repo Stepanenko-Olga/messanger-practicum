@@ -11,6 +11,7 @@ export class FormFieldInput extends Block {
   init() {
     this.element?.classList.add('form__input-field');
     this.element?.setAttribute("name", this.props.name);
+    this.element?.setAttribute("value", this.props.value);
     this.children.error = new ErrorMessage({ title: this.props.errorText })
   }
 
@@ -24,7 +25,7 @@ export class FormFieldInput extends Block {
   }
 
   get validationType() {
-    return this.props.validationType;    
+    return this.props.validationType;
   }
 
   setValue(value: string) {

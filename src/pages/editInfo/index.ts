@@ -23,7 +23,6 @@ export class EditInfo extends Block {
 
   init() {
     const user = store.getState().user?.data;
-    console.log(user);
     this.element?.classList.add('container');
     this.children.editRowEmail = new FormField({
       label: 'Почта',
