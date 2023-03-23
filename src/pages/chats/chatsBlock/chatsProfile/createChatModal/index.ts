@@ -13,7 +13,7 @@ export class CreateChatModal extends Block {
     super('form', props);
     this.setProps({
       events: {
-        submit: (event: Event) => {
+        submit: (event: Event) => {      
           event.preventDefault();
           this.onSubmit();
         }
@@ -40,7 +40,9 @@ export class CreateChatModal extends Block {
     this.element?.classList.add(newProps.display);
     if (this.props.display === "modal-show") {
       const close = document.querySelector(".close") as HTMLInputElement;
+      console.log(close);
       close.addEventListener('click', () => {
+        console.log(close);
         this.setProps({ display: "modal-hide" })
       });
     }

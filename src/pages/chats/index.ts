@@ -13,7 +13,6 @@ export class ChatsPage extends Block {
 
 
   init() {
-    console.log(store.getState().chats?.data);
     this.element?.classList.add('container');
     this.children.chatsBlock = new ChatsBlock({ chats: [] });
     this.children.messagesBlock = new MessagesBlock({});

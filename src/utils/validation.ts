@@ -4,7 +4,7 @@ import { validationMasks } from "../components/formFieldInput/const";
 
 import Block from "./Block";
 
-export const submitValidation = (props: Record<string, Block | Block[]>) => {
+export const submitValidation = (props: Record<string, Block | Block[]>) => { 
   let fields: FormField[] = [];
   let isValid: boolean = true;
   Object.values(props).forEach((child) => {

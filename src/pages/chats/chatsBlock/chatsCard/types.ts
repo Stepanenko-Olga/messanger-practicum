@@ -4,6 +4,7 @@ export interface ChatsCardProps {
   text?: string;
   time?: string;
   count: number;
+  id: number;
   events: {
     click: () => void;
   }
