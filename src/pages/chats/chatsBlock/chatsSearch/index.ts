@@ -4,7 +4,7 @@ import { ChatsSearchProps } from './types';
 
 export class ChatsSearch extends Block {
   constructor(props: ChatsSearchProps) {
-    super('input', props);
+    super('span', props);
   }
 
   init() {

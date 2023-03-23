@@ -53,13 +53,7 @@ export class FormField extends Block {
       case "message": this.validate(validationMasks.REQUIRED, "Поле обязательно к заполнению"); break;
     }
 
-    /* this.props.value
-      ? (this.children.error as Block).setProps({ title: undefined })
-      : (this.children.error as Block).setProps({ title: "Поле обязательно к заполнению" }); break;
-  } */
-
   }
-
   validate(mask: RegExp, text: string) {
     mask.test((this.children.input as FormFieldInput).value)
       ? (this.children.error as Block).setProps({ title: undefined })

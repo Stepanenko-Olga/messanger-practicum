@@ -15,7 +15,7 @@ export class MessagesFooter extends Block {
 
   init() {
     this.element?.classList.add('messages__footer');
-    this.children.input = new FormField({
+    this.children.field = new FormField({
       type: 'text',
       name: 'message',
       validationType: "message",
@@ -26,12 +26,12 @@ export class MessagesFooter extends Block {
       title: 'Отправить',
       type: 'button',
       events: {
-        click: () => {
-          submitValidation(this.children);
+        click: () => {        
+          if(submitValidation(this.children))  { 
           const values = parseData(this.children);
           const data = Object.fromEntries(values);
           console.log(data);
-          MessagesController.sendMessage(this.props.selectedChat!.id, data.message);
+          MessagesController.sendMessage(this.props.selectedChat!.id, data.message); }
         }
       }
     });
