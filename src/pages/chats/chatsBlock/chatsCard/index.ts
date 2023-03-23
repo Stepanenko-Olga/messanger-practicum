@@ -1,6 +1,7 @@
 import template from './chatsCard.hbs';
 import Block from '../../../../utils/Block';
 import { ChatsCardProps } from './types';
+import { ChatAva } from './chatAva';
 
 export class ChatsCard extends Block {
   constructor(props: ChatsCardProps) {
@@ -9,6 +10,7 @@ export class ChatsCard extends Block {
 
   init() {
     this.element?.classList.add('chats__list-card');
+    this.children.chatAva = new ChatAva({ img: this.props.img})
   }
 
   render() {
