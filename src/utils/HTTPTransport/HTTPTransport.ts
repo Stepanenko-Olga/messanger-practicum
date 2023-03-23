@@ -21,7 +21,7 @@ export default class HTTPTransport {
   }
 
   public put<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+    return this.request<Response>(this.endpoint + queryStringify(path), {
       method: Method.Put,
       data,
     });
