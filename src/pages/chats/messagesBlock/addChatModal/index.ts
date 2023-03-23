@@ -41,6 +41,12 @@ export class AddChatModal extends Block {
   protected componentDidUpdate(oldProps: AddChatModalProps, newProps: AddChatModalProps): boolean {
     this.element?.classList.remove(oldProps.display);
     this.element?.classList.add(newProps.display);
+    if (this.props.display === "modal-show") {
+      const close = document.querySelector(".close") as HTMLInputElement;
+      close.addEventListener('click', () => {
+        this.setProps({ display: "modal-hide" })
+      });
+    }
     return true;
   }
 
@@ -61,6 +67,7 @@ export class AddChatModal extends Block {
         chatId: chatId
       }
       ChatsController.putUser(data);
+      this.setProps({ display: "modal-hide" });
     });
   }
 

@@ -27,20 +27,31 @@ export class EditAvatar extends Block {
     });
   }
 
+
+
+
   protected componentDidUpdate(oldProps: EditAvatarProps, newProps: EditAvatarProps): boolean {
     this.element?.classList.remove(oldProps.display);
     this.element?.classList.add(newProps.display);
+    if (this.props.display === "modal-show") {
+      const close = document.querySelector(".close") as HTMLInputElement;
+      close.addEventListener('click', () => {     
+        this.setProps({ display: "modal-hide" })
+      });
+    }
     return true;
   }
+
+
 
   onSubmit() {
     const file = document.querySelector(".edit-avatar") as HTMLInputElement; // получаем наш input
     if (!file) return;
     if (file.files) {
-      console.log(file.files[0])
       const data = new FormData();
       data.append('avatar', file.files[0]);
       UserController.editAvatar(data);
+      this.setProps({ display: "modal-hide" });
     }
   }
 
