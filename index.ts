@@ -41,22 +41,34 @@ window.addEventListener('DOMContentLoaded', async () => {
     case Routes.Registration:
       isProtectedRoute = false;
       break;
+    case Routes.Profile:
+    case Routes.Authorization:
+    case Routes.EditInfo:
+    case Routes.EditPassword:
+    case Routes.Page404:
+    case Routes.Page500:
+    case Routes.Chats:
+
+
   }
+
+
+
 
   try {
     await AuthController.fetchUser();
     Router.start();
 
-     if (!isProtectedRoute) {
+    if (!isProtectedRoute) {
       Router.go(Routes.Profile)
     }
   } catch (e) {
     Router.start();
-  
+
     if (isProtectedRoute) {
       Router.go(Routes.Home);
     }
-  } 
+  }
 
-  });
+});
 
