@@ -12,10 +12,10 @@ import { Chat } from '../../../api/ChatsApi/types';
 export class ChatsBlock extends Block<ChatsBlockProps> {
   constructor(props: ChatsBlockProps) {
     super('box', props);
-    store.on(StoreEvents.Updated, () => {
-      const chats = store.getState().chats?.data;
-      this.setProps({ chats });
-    });
+store.on(StoreEvents.Updated, () => {
+       const chats = store.getState().chats?.data;
+       this.setProps({ chats });
+     }); 
   }
 
   init() {

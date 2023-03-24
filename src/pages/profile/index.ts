@@ -10,11 +10,17 @@ import { Header } from '../../components/header';
 import { ProfileModalLink } from './profileModalLink';
 import { EditAvatar } from './editAvatarModal';
 import { Link } from '../../components/link';
+import { StoreEvents } from '../../utils/Store/const';
+import { ProfileModalLinkProps } from './profileModalLink/types';
 
 
 export class ProfilePage extends Block {
   constructor() {
     super('box');
+    store.on(StoreEvents.Updated, () => {
+      const user = store.getState().user?.data;
+      (this.children.avaOpen as Block).setProps({ avaPath: user?.avatar });
+    });
   }
 
 
@@ -63,6 +69,11 @@ export class ProfilePage extends Block {
       to: '/messenger',
       router: Router,
     });
+  }
+
+  protected componentDidUpdate(oldProps: ProfileModalLinkProps, newProps: ProfileModalLinkProps): boolean {
+    if (newProps.avaPath) this.children.avaOpen = new ProfileModalLink(newProps);
+    return true;
   }
 
   render() {
