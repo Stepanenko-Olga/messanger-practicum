@@ -1,4 +1,4 @@
-function queryStringify(data: any): string {
+export function queryStringify(data: any): string {
   // eslint-disable-next-line no-undef
   if (data instanceof FormData) return '';
   if (typeof data !== 'object') {
