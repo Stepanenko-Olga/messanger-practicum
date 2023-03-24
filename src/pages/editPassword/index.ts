@@ -48,8 +48,10 @@ export class EditPassword extends Block {
   }
 
   onSubmit() {
+    console.log("ваваиыаи");
     submitValidation(this.children);
     const values = parseData(this.children);
+
     const data = Object.fromEntries(values);
     UserController.editPassword(data as UpdatePassword);
   }

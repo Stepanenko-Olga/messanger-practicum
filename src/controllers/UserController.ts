@@ -44,8 +44,10 @@ export class UserController {
 
     async editPassword(data: UpdatePassword) {
         try {
+
             await this.api.editPassword(data);
             await AuthController.fetchUser();
+
             router.go('/settings');
         } catch (e: any) {
             store.set('user.error', e.message);
