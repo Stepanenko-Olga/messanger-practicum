@@ -4,31 +4,35 @@ import { ChatsCard } from './chatsCard';
 import { ChatsBlockProps } from './types';
 import ChatsController from '../../../controllers/ChatsController';
 import { ChatsProfile } from './chatsProfile';
+import store from '../../../utils/Store/Store';
+import { StoreEvents } from '../../../utils/Store/const';
+import { Chat } from '../../../api/ChatsApi/types';
 
 
 export class ChatsBlock extends Block<ChatsBlockProps> {
   constructor(props: ChatsBlockProps) {
     super('box', props);
-    /* store.on(StoreEvents.Updated, () => {
+    store.on(StoreEvents.Updated, () => {
       const chats = store.getState().chats?.data;
-      this.setProps(chats);
-    }); */
+      this.setProps({ chats });
+    });
   }
 
   init() {
     this.element?.classList.add('chats');
     this.children.chatsProfile = new ChatsProfile();
-    this.children.chatsCards = this.createChats(this.props);
+    if (this.props.chats) this.children.chatsCards = this.createChats(this.props.chats);
   }
 
   protected componentDidUpdate(oldProps: ChatsBlockProps, newProps: ChatsBlockProps): boolean {
-    this.children.chatsCards = this.createChats(newProps);
+    console.log(newProps);
+    if (newProps.chats) this.children.chatsCards = this.createChats(newProps.chats);
     return true;
   }
 
 
-  private createChats(props: ChatsBlockProps) {
-    return props.chats.map(chat => {
+  private createChats(chats: Chat[]) {
+    return chats.map(chat => {
       return new ChatsCard({
         img: chat.avatar,
         name: chat.title,
@@ -37,7 +41,7 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
         count: chat.unread_count,
         id: chat.id,
         events: {
-          click: () => {        
+          click: () => {
             ChatsController.selectChat(chat.id);
           }
         }

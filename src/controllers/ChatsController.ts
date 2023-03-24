@@ -32,6 +32,21 @@ export class ChatsController {
 
     }
 
+    async fetchChats() {
+        try {
+            store.set('chats.isLoading', true);
+            const chats = await this.api.read();
+            chats.map(async (chat) => {
+                const token = await this.getToken(chat.id);
+                await MessagesController.connect(chat.id, token);
+            });
+            store.set('chats.data', chats);
+            store.set('chats.isLoading', false);
+        } catch (e: any) {
+            store.set('chats.error', e.message);
+        }
+    }
+
     async putUser(data: UserChatData) {
         try {
             await this.api.putUser(data);
@@ -52,20 +67,7 @@ export class ChatsController {
         }
     }
 
-    async fetchChats() {
-        try {
-            store.set('chats.isLoading', true);
-            const chats = await this.api.read();
-            chats.map(async (chat) => {
-                const token = await this.getToken(chat.id);
-                await MessagesController.connect(chat.id, token);
-            });
-            store.set('chats.data', chats);
-            store.set('chats.isLoading', false);
-        } catch (e: any) {
-            store.set('chats.error', e.message);
-        }
-    }
+    
 
     selectChat(id: number) {
         const chat = store.getState().chats?.data.find((chat => chat.id === id));
