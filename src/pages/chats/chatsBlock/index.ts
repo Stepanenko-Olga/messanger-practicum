@@ -25,7 +25,6 @@ export class ChatsBlock extends Block<ChatsBlockProps> {
   }
 
   protected componentDidUpdate(oldProps: ChatsBlockProps, newProps: ChatsBlockProps): boolean {
-    console.log(newProps);
     if (newProps.chats) this.children.chatsCards = this.createChats(newProps.chats);
     return true;
   }
