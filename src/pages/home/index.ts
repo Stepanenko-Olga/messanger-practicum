@@ -1,7 +1,7 @@
 import template from './home.hbs';
 import Block from '../../utils/Block';
 import { Link } from '../../components/link';
-import { renderDOM } from '../../utils/renderDOM';
+import Router from '../../utils/router/Router';
 
 export class Home extends Block {
   constructor() {
@@ -12,40 +12,33 @@ export class Home extends Block {
     this.element?.classList.add('container');
     this.children.authorizationLink = new Link({
       title: 'Авторизация',
-      events: {
-        click: () => renderDOM('authorization'),
-      },
+      to: '/',
+      router: Router,
     });
     this.children.registrationLink = new Link({
       title: 'Регистрация',
-      events: {
-        click: () => renderDOM('registration'),
-      },
+      to: '/sign-up',
+      router: Router,
     });
     this.children.profileLink = new Link({
       title: 'Профиль пользователя',
-      events: {
-        click: () => renderDOM('profile'),
-      },
+      to: '/settings',
+      router: Router,
     });
     this.children.chatsLink = new Link({
       title: 'Чат',
-      events: {
-        click: () => renderDOM('chats'),
-      },
+      to: '/messenger',
+      router: Router,
     });
     this.children.page404Link = new Link({
       title: 'Page404',
-      events: {
-        click: () => renderDOM('page404'),
-      },
+      to: '/page404',
+      router: Router,
     });
-
     this.children.page500Link = new Link({
       title: 'Page500',
-      events: {
-        click: () => renderDOM('page500'),
-      },
+      to: '/page500',
+      router: Router,
     });
   }
 

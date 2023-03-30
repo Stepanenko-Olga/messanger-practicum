@@ -2,21 +2,22 @@ import template from './authorization.hbs';
 import Block from '../../utils/Block';
 import { Button } from '../../components/button';
 import { Link } from '../../components/link';
-import { renderDOM } from '../../utils/renderDOM';
-import { printValues } from '../../utils/printFormData';
+import { parseData } from '../../utils/parseFormData';
 import { FormField } from '../../components/formField';
 import { submitValidation } from '../../utils/validation';
+import Router from '../../utils/router/Router';
+import { SigninData } from '../../api/AuthApi/types';
+import AuthController from '../../controllers/AuthController';
 
 
 export class Authorization extends Block {
   constructor() {
-    super('form');
+    super('box');
     this.setProps({
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          submitValidation(this.children);
-          printValues(this.children);
+          this.onSubmit();
         }
       },
     })
@@ -27,14 +28,12 @@ export class Authorization extends Block {
     this.children.login = new FormField({
       label: 'Логин',
       name: 'login',
-      value: 'ivanivanov',
       type: 'text',
       validationType: "login"
     })
     this.children.password = new FormField({
       label: 'Пароль',
       name: 'password',
-      value: '******',
       type: 'password',
       validationType: "password"
     });
@@ -44,11 +43,18 @@ export class Authorization extends Block {
     });
     this.children.link = new Link({
       title: 'Нет аккаунта?',
-      events: {
-        click: () => renderDOM('registration'),
-      },
+      to: '/sign-up',
+      router: Router,
     });
   }
+
+  onSubmit() {
+    submitValidation(this.children);
+    const values = parseData(this.children);
+    const data = Object.fromEntries(values);
+    AuthController.signin(data as SigninData);
+  }
+
 
   render() {
     return this.compile(template, this.props);

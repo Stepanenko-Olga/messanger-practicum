@@ -2,27 +2,15 @@
     <div class="form__title">
         Изменить данные
     </div>
-    <div class="form__fields"> 
-    {{{ editRowEmail}}}
-    {{{ editRowLogin }}}
-    {{{ editRowFirstName}}}
-    {{{ editRowSecondName }}}
-    {{{ editRowDisplayName }}}
-    {{{ editRowPhone }}}
+    <div class="form__fields">
+        {{{ editRowEmail}}}
+        {{{ editRowLogin }}}
+        {{{ editRowFirstName}}}
+        {{{ editRowSecondName }}}
+        {{{ editRowDisplayName }}}
+        {{{ editRowPhone }}}
     </div>
     <div lass="form__submit">
         {{{submitButton}}}
     </div>
 </div>
-{{!-- после написания логики будет перенесено в модальное окно  --}}
-<box class="form">
-    <div class="form__title">
-        Загрузите файл
-    </div>
-    <form class="file__input"> 
-        <input class="file__input-field" name="avatar" type="file">
-        <span class="file__input-link">Выбрать файл на <br/> компьютере</span>              
-    </form>    
-    <button class="button">Поменять</button>        
-</box>        
-

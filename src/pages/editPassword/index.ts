@@ -1,7 +1,10 @@
+import { UpdatePassword } from '../../api/UserApi/types';
 import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
+import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
-import { printValues } from '../../utils/printFormData';
+import { parseData } from '../../utils/parseFormData';
+import store from '../../utils/Store/Store';
 import { submitValidation } from '../../utils/validation';
 import template from './editPassword.hbs';
 
@@ -12,8 +15,7 @@ export class EditPassword extends Block {
       events: {
         submit: (event: Event) => {
           event.preventDefault();
-          submitValidation(this.children);
-          printValues(this.children);
+          this.onSubmit();
         }
       },
     })
@@ -23,21 +25,18 @@ export class EditPassword extends Block {
     this.element?.classList.add('container');
     this.children.editRowOldPassword = new FormField({
       label: 'Старый пароль',
-      placeholder: '******',
       type: 'password',
       name: 'oldPassword',
       validationType: "password",
     });
     this.children.editRowNewPassword = new FormField({
       label: 'Новй пароль',
-      placeholder: '******',
       type: 'password',
       name: 'newPassword',
       validationType: "password"
     });
     this.children.editRowPasswordCheck = new FormField({
       label: 'Повторите новый пароль',
-      placeholder: '******',
       type: 'password',
       name: 'password_check',
       validationType: "password"
@@ -46,6 +45,15 @@ export class EditPassword extends Block {
       title: 'Сохранить',
       type: "submit"
     });
+  }
+
+  onSubmit() {
+    console.log("ваваиыаи");
+    submitValidation(this.children);
+    const values = parseData(this.children);
+
+    const data = Object.fromEntries(values);
+    UserController.editPassword(data as UpdatePassword);
   }
 
   render() {

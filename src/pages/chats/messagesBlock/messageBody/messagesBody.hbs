@@ -1,3 +1,14 @@
-<span class="messages__body-date">{{date}}</span>
-{{{messageMy}}}
-{{{messageAnother}}}
+<div class="chatButton">
+    {{{addChatButton}}}
+</div>
+<div class="chatButton">
+    {{{removeFromChatButton}}}
+</div>
+<div class="chatButton">
+    {{{deleteChatButton}}}
+</div>
+{{{addChat}}}
+{{{removeFromChat}}}
+{{#each messages}}
+{{{this}}}
+{{/each}}

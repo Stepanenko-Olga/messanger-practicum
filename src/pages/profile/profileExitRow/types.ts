@@ -1,5 +1,6 @@
 export interface ProfileExitRowProps {
-    events: {
-      click: () => void;
-  }
-  }
+  title: string;
+  events?: {
+    click: (event: Event) => void;
+  };
+}

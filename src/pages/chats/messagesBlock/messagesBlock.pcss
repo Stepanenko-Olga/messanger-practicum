@@ -28,20 +28,14 @@
   }
 
 .messages__body {
-    width: 75%;
-    height: 100%;
+    width: 75%;    
+    height: 75%;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-betwen;
     position: relative;
     padding: 20px;
-}
-
-.messages__body-date {
-    color: $text-grey;
-    font-size: 12px;
-    text-align: center; 
-    margin: 10px;      
 }
 
 .messages__body-another {
@@ -80,23 +74,28 @@
 }
 
 .messages__footer-input {     
-   background: $base-grey;
-   border: none;
-   border-radius: 30px;
+   align-items: flex-end;
+   border: none;  
    margin-left: 10px;
-   color: $text-grey;
+   height: 28px; 
    font-size: 12px;
    font-weight: 500;
-   width: 93%;   
+   width: 60%
+   
 
 }
 
 .messages__footer-enter {
     height: 28px; 
-    margin: 2px 0; 
+    margin: 2px 0 auto 10px; 
     line-height: 28px;  
     background: $primary;
     border-radius: 50%;
     color: $text-grey;
-    width: 3%;
+ 
+}
+
+.chatButton {
+    cursor: pointer;
+    margin: 10px 10px 0 auto;
 }
