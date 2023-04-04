@@ -1,13 +1,13 @@
-import API, { AuthAPI } from '../api/AuthApi/AuthApi';
+import AuthAPI from '../api/AuthApi/AuthApi';
 import store from '../utils/Store/Store';
 import router from '../utils/router/Router';
 import { SigninData, SignupData } from '../api/AuthApi/types';
 
-export class AuthController {
+export default class AuthController {
     private readonly api: AuthAPI;
 
     constructor() {
-        this.api = API;
+        this.api = new AuthAPI;
     }
 
     async signin(data: SigninData) {
@@ -15,7 +15,7 @@ export class AuthController {
             await this.api.signin(data);
             await this.fetchUser();
             router.go('/messenger');
-        } catch (e: any) {       
+        } catch (e: any) {
             if (e.reason === "User already in system") router.go("/messenger");
             else store.set('user.error', e.message);
         }
@@ -50,4 +50,3 @@ export class AuthController {
     }
 }
 
-export default new AuthController();
