@@ -82,7 +82,7 @@ export class Router {
     this.history.forward();
   }
 
-  private getRoute(pathname: string) {
+  public getRoute(pathname: string) {
     return this.routes.find(route => route.match(pathname));
   }
 }
