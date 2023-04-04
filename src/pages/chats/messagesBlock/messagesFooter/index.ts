@@ -1,7 +1,6 @@
 import template from './messagesFooter.hbs';
 import Block from '../../../../utils/Block/Block';
 import { MessagesFooterProps } from './types';
-import { FormFieldInput } from '../../../../components/formFieldInput';
 import { Button } from '../../../../components/button';
 import MessagesController from '../../../../controllers/MessagesController';
 import { FormField } from '../../../../components/formField';

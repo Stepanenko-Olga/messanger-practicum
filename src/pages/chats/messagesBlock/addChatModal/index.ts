@@ -20,7 +20,7 @@ export class AddChatModal extends Block {
           event.preventDefault();
           this.onSubmit();
         },
-        reset: (event: Event) => {
+        reset: (_event: Event) => {
           this.onReset();
         }
       }

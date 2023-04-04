@@ -1,10 +1,9 @@
 import template from './messageMy.hbs';
 import Block from '../../../../../utils/Block/Block';
-import { MessageProps } from '../types';
 
 
 export class MessageMy extends Block {
-  constructor(props: MessageProps) {
+  constructor(props: any ) {
     super('box', props);
   }
 

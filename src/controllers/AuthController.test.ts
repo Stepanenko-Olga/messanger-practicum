@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import proxyquire from "proxyquire";
 import sinon from "sinon";
-import type AuthControllerType from './AuthController';
+import type AuthControllerType from "./AuthController"
 
 
 
@@ -21,8 +21,7 @@ describe('AuthController', () => {
             login: '',
             password: ''
         };
-        const mock = new AuthController();
-        mock.signin(data);
+        AuthController.signin(data);
         expect(signinFake.calledWith(data)).to.eq(true);
     })
 });

@@ -3,7 +3,7 @@ import store from '../utils/Store/Store';
 import router from '../utils/router/Router';
 import { SigninData, SignupData } from '../api/AuthApi/types';
 
-export default class AuthController {
+class AuthController {
     private readonly api: AuthAPI;
 
     constructor() {
@@ -49,4 +49,6 @@ export default class AuthController {
         }
     }
 }
+
+export default new AuthController();
 
