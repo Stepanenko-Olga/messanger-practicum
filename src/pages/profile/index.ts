@@ -71,7 +71,7 @@ export class ProfilePage extends Block {
     });
   }
 
-  protected componentDidUpdate(oldProps: ProfileModalLinkProps, newProps: ProfileModalLinkProps): boolean {
+  protected componentDidUpdate(_oldProps: ProfileModalLinkProps, newProps: ProfileModalLinkProps): boolean {
     if (newProps.avaPath) this.children.avaOpen = new ProfileModalLink(newProps);
     return true;
   }

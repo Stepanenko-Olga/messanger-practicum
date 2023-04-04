@@ -12,9 +12,12 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "outDir": "dist",
-    "declaration": false
+    "declaration": false,
   },
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "ts-node": {
+    "files": true
+  }
 }
