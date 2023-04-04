@@ -1,5 +1,5 @@
 import template from './messageAnother.hbs';
-import Block from '../../../../../utils/Block';
+import Block from '../../../../../utils/Block/Block';
 
 export class MessageAnother extends Block {
   constructor(props: any) {

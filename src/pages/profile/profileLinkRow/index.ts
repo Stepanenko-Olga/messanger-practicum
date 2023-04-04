@@ -1,5 +1,5 @@
 import template from './profileLinkRow.hbs';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { ProfileLinkRowProps } from './types';
 import Router from '../../../utils/router/Router';
 

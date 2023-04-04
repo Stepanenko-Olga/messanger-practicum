@@ -52,7 +52,7 @@ export default class HTTPTransport {
 
       xhr.open(method, (method === Method.Get) && !!data ? `${url}${queryStringify(data)}` : url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = (_e) => {
 
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {

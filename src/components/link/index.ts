@@ -1,5 +1,5 @@
 import template from './link.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { LinkProps } from './types';
 import Router from '../../utils/router/Router';
 

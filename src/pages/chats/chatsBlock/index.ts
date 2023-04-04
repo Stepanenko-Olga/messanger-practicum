@@ -1,5 +1,5 @@
 import template from './chatsBlock.hbs';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { ChatsCard } from './chatsCard';
 import { ChatsBlockProps } from './types';
 import ChatsController from '../../../controllers/ChatsController';
@@ -12,10 +12,10 @@ import { Chat } from '../../../api/ChatsApi/types';
 export class ChatsBlock extends Block<ChatsBlockProps> {
   constructor(props: ChatsBlockProps) {
     super('box', props);
-store.on(StoreEvents.Updated, () => {
-       const chats = store.getState().chats?.data;
-       this.setProps({ chats });
-     }); 
+    store.on(StoreEvents.Updated, () => {
+      const chats = store.getState().chats?.data;
+      this.setProps({ chats });
+    });
   }
 
   init() {

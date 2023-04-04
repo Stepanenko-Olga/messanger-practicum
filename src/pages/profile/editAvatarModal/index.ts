@@ -1,7 +1,7 @@
 
 import { Button } from '../../../components/button';
 import UserController from '../../../controllers/UserController';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import template from './editAvatarModal.hbs';
 import { EditAvatarProps } from './types';
 

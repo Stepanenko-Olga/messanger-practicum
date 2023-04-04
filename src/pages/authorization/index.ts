@@ -1,5 +1,5 @@
 import template from './authorization.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { Button } from '../../components/button';
 import { Link } from '../../components/link';
 import { parseData } from '../../utils/parseFormData';

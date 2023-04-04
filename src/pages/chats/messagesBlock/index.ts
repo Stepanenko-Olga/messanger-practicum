@@ -1,5 +1,5 @@
 import { Button } from '../../../components/button';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { State, withStore } from '../../../utils/Store/Store';
 import { AddChatModal } from './addChatModal';
 import { MessagesBody } from './messageBody';
@@ -19,7 +19,7 @@ export class MessagesBlockWithPops extends Block {
     this.element?.classList.add('messages');
     this.children.messagesHeader = this.createHeader(this.props);
     this.children.messagesBody = this.createMessages(this.props);
-    this.children.messagesFooter = this.createFooter(this.props);    
+    this.children.messagesFooter = this.createFooter(this.props);
 
 
   }

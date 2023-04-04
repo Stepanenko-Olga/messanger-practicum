@@ -1,5 +1,5 @@
 import template from './errorMessage.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { ErrorMessageProps } from './types';
 
 export class ErrorMessage extends Block {

@@ -1,5 +1,5 @@
 import template from './formField.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { FormFieldProps } from './types';
 import { FormFieldLabel } from '../formFieldLabel';
 import { FormFieldInput } from '../formFieldInput';
@@ -57,7 +57,7 @@ export class FormField extends Block {
     mask.test((this.children.input as FormFieldInput).value)
       ? (this.children.error as Block).setProps({ title: undefined })
       : (this.children.error as Block).setProps({ title: text });
-   
+
   }
 
   render() {

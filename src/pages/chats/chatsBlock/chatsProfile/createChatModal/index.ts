@@ -1,7 +1,7 @@
 import { Button } from '../../../../../components/button';
 import { FormField } from '../../../../../components/formField';
 import ChatsController from '../../../../../controllers/ChatsController';
-import Block from '../../../../../utils/Block';
+import Block from '../../../../../utils/Block/Block';
 import { parseData } from '../../../../../utils/parseFormData';
 import { submitValidation } from '../../../../../utils/validation';
 import template from './createChatModal.hbs';
@@ -40,18 +40,18 @@ export class CreateChatModal extends Block {
 
   protected componentDidUpdate(oldProps: createChatModalProps, newProps: createChatModalProps): boolean {
     this.element?.classList.remove(oldProps.display);
-    this.element?.classList.add(newProps.display);    
+    this.element?.classList.add(newProps.display);
     return true;
   }
 
 
-  onSubmit() {   
+  onSubmit() {
     if (submitValidation(this.children)) {
       const values = parseData(this.children);
       const data = Object.fromEntries(values);
       if (data.title) ChatsController.create(data);
       this.setProps({ display: "modal-hide" });
-    }   
+    }
   }
 
   onReset() {

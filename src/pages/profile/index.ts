@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import template from './profile.hbs';
 import { ProfileInfoRow } from './profileInfoRow';
 import { ProfileLinkRow } from './profileLinkRow';

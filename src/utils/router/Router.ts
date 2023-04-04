@@ -1,4 +1,4 @@
-import Block from '../Block';
+import Block from '../Block/Block';
 import { BlockConstructable } from './types';
 import { isEqual, render } from './utils';
 

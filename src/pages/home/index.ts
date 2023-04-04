@@ -1,5 +1,5 @@
 import template from './home.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { Link } from '../../components/link';
 import Router from '../../utils/router/Router';
 

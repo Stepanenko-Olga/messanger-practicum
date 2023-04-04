@@ -1,10 +1,10 @@
 import template from './profileModalLink.hbs';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { ProfileModalLinkProps } from './types';
 
 export class ProfileModalLink extends Block<ProfileModalLinkProps> {
   constructor(props: ProfileModalLinkProps) {
-    super('div', props );
+    super('div', props);
   }
 
   init() {

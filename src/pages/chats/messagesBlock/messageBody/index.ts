@@ -1,5 +1,5 @@
 import template from './messagesBody.hbs';
-import Block from '../../../../utils/Block';
+import Block from '../../../../utils/Block/Block';
 import { MessagesBodyProps } from './types';
 import { MessageMy } from './messageMy';
 import { MessageAnother } from './messageAnother';;

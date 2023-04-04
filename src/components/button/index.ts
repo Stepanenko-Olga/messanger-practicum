@@ -1,5 +1,5 @@
 import template from './button.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { ButtonProps } from './types';
 
 export class Button extends Block {
