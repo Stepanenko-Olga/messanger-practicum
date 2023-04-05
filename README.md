@@ -13,7 +13,7 @@
 - страница чатов,
 - страница профиля.
 
-Статус реализации: версия 03 - реализация задач третьего спринта.
+Статус реализации: версия 04 - реализация задач четвертого спринта.
 
 
 ## **Доступные скрипты:**
@@ -27,15 +27,18 @@
 - макет в figma: https://www.figma.com/file/onuQUxozDxxjt5VfCWXJfj/sprint_1?node-id=0%3A1&t=XBTzXHQOab8NVBok-0.
 - репозиторий github: https://github.com/StepanenkoOlgaV/middle.messenger.praktikum.yandex.
 - задеплоеный проект netlify: https://deploy-preview-4--endearing-klepon-cdfcb6.netlify.app/ 
+- задеполенный проект на Яндекс.Облако https://bbaq0f4u91jr9ffcct1p.containers.yandexcloud.net/
 - API проекта: https://ya-praktikum.tech/api/v2
 
+
 - express, 
-- parcel, 
+- webpack, 
 - handlebars precompile,
 - postcss,
 - typescript,
 - eslint,
-- stylelint.
+- stylelint,
+- husky.
 
 - класс для рaботы с запросами HTTPTransport
 - класс для работы с WebSocet - WSTransport
