@@ -80,7 +80,7 @@ module.exports = {
     ],
 
     resolve: {
-        extensions: ['.ts', '.js', '.json', '.hbs', '.pcss', '.html'],
+        extensions: ['.ts', '.js', '.json'],
         alias: {
             handlebars: 'handlebars/dist/handlebars.min.js'
         }
