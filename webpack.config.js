@@ -1,7 +1,6 @@
-const webpack = require("webpack");
-//const webpackDevServer = require('webpack-dev-server');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: "./index.ts",
@@ -17,28 +16,29 @@ module.exports = {
             {
                 test: /\.pcss$/,
                 use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                        },
-                    },
                     {
                         loader: "postcss-loader",
                         options: {
                             postcssOptions: {
                                 plugins: [
                                     [
-                                        "postcss-nested",
-                                        "postcss-simple-vars",
-                                        "postcss-conditionals-renewed"
+                                        "postcss-import",
+                                        "precss",
+                                        "postcss-simple-vars"
                                     ],
                                 ],
                             },
                         },
                     },
+              MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                        },
+                    }, 
+                    
                 ],
             },
             {
@@ -52,10 +52,17 @@ module.exports = {
             {
                 test: /\.(ts|js)$/,
                 exclude: /node_modules/,
-                use: "ts-loader" // or we can use awesome-typescript-loader
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            configFile: path.resolve(__dirname, 'tsconfig.json'),
+                        },
+                    },
+                ],
             },
             {
-                test: /.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
                         loader: 'file-loader',
@@ -68,18 +75,23 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'
-        })
-
+        }),
+        new MiniCssExtractPlugin(),
     ],
 
     resolve: {
-        extensions: ['.ts', '.js', '.json', '.hbs', '.pcss', '.html']
+        extensions: ['.ts', '.js', '.json', '.hbs', '.pcss', '.html'],
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+        }
     },
     devServer: {
         static: {
             directory: path.join(__dirname, 'dist'),
         },
-        port: 3000,
-        historyApiFallback: true
+        port: 4000,
+        historyApiFallback: true,
+        open: true,
+        compress: true,
     },
 };

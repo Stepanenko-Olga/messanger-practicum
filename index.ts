@@ -9,6 +9,8 @@ import { Page404 } from './src/pages/page404';
 import { Page500 } from './src/pages/page500';
 import Router from './src/utils/router/Router';
 import AuthController from './src/controllers/AuthController';
+import "./src/static/styles/index.pcss";
+
 
 enum Routes {
   Home = '/home',

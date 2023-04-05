@@ -47,8 +47,7 @@ export class EditPassword extends Block {
     });
   }
 
-  onSubmit() {
-    console.log("ваваиыаи");
+  onSubmit() {  
     submitValidation(this.children);
     const values = parseData(this.children);
 

@@ -11,7 +11,6 @@ export default class HTTPTransport {
   }
 
   public get<Response>(path = '/'): Promise<Response> {
-    console.log(path);
     return this.request<Response>(this.endpoint + path);
   }
 
