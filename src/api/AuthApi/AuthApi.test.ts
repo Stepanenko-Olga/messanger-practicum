@@ -4,16 +4,16 @@ import { expect } from 'chai';
 import type AuthApiType from './AuthApi';
 import type BaseApiType from '../BaseApi/BaseApi';
 
-const httpTransportMock = {
-  get: sinon.stub(),
-  post: sinon.stub(),
+const apiMethodsMock = {
+  get: sinon.fake(),
+  post: sinon.fake(),
 };
 
 const { default: BaseApi } = proxyquire('../BaseApi/BaseApi', {
   '../../utils/HTTPTransport/HTTPTransport': {
     default: class {
-      get = httpTransportMock.get;
-      post = httpTransportMock.post;
+      get = apiMethodsMock.get;
+      post = apiMethodsMock.post;
     },
   },
 }) as { default: typeof BaseApiType };
@@ -25,9 +25,18 @@ const { default: AuthApi } = proxyquire('./AuthApi', {
 }) as { default: typeof AuthApiType };
 
 describe('AuthApi', () => {
-  it('should call /auth/signup on signup method', () => {
+  it('should use post signin mock', () => {
     const authApi = new AuthApi();
-
+    const data = {     
+      login: '',      
+      password: '',  
+    };
+    authApi.signin(data);
+    expect(apiMethodsMock.post.calledWith('/signin', data)).to.eq(true);
+  });
+  
+  it('should use post signup mock', () => {
+    const authApi = new AuthApi();
     const data = {
       first_name: '',
       second_name: '',
@@ -36,9 +45,19 @@ describe('AuthApi', () => {
       password: '',
       phone: '',
     };
-
     authApi.signup(data);
+    expect(apiMethodsMock.post.calledWith('/signup', data)).to.eq(true);
+  });
 
-    expect(httpTransportMock.post.calledWith('/signup', data)).to.eq(true);
+  it('should use get mock', () => {
+    const authApi = new AuthApi();    
+    authApi.read();
+    expect(apiMethodsMock.get.calledWith('/user')).to.eq(true);
+  });
+
+  it('should use post logout mock', () => {
+    const authApi = new AuthApi();    
+    authApi.logout();
+    expect(apiMethodsMock.post.calledWith('/logout')).to.eq(true);
   });
 });
