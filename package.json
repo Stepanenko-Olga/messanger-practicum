@@ -28,7 +28,6 @@
     "handlebars-template-loader": "1.0.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
-    "lint-staged": "^13.2.0",
     "mocha": "10.2.0",
     "nanoid": "3.3.6",
     "postcss": "8.4.21",

@@ -1,13 +1,6 @@
 {
     "rules": {
-        "no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "none",
-                "ignoreRestSiblings": false
-            }
-        ],
+        "no-unused-vars": "off",
         "max-len": [
             1,
             156
