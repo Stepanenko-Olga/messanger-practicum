@@ -3,7 +3,7 @@ import Block from '../../../../../utils/Block/Block';
 
 
 export class MessageMy extends Block {
-  constructor(props: any ) {
+  constructor(props: unknown ) {
     super('box', props);
   }
 
