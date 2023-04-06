@@ -3,3 +3,4 @@
 
 npm run test
 npm run stylelint-fix
+npx lint-staged

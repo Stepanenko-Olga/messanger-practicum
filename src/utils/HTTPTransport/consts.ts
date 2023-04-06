@@ -1,7 +1,10 @@
-export enum Method {
+
+/* eslint-disable  no-unused-vars */ 
+export enum Method { 
   Get = 'Get',
   Post = 'Post',
   Put = 'Put',
   Patch = 'Patch',
   Delete = 'Delete'
 };
+
