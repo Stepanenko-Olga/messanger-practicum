@@ -2,6 +2,9 @@ import { Method } from "./consts";
 import { Options } from "./types";
 import { queryStringify } from "./utils";
 
+type HTTPMethod<Response> = (path: string, data?: unknown) => Promise<Response>
+
+
 export default class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
   protected endpoint: string;
@@ -21,21 +24,21 @@ export default class HTTPTransport {
     });
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+  public put: HTTPMethod<Response> = (path: string, data?: unknown) => {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Put,
       data,
     });
   }
 
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+  public patch: HTTPMethod<Response> = (path: string, data?: unknown) => {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Patch,
       data,
     });
   }
 
-  public delete<Response>(path: string, data?: unknown): Promise<Response> {
+  public delete: HTTPMethod<Response> = (path: string, data?: unknown) => {
     return this.request<Response>(this.endpoint + path, {
       method: Method.Delete,
       data
