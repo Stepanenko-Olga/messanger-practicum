@@ -1,5 +1,5 @@
 import template from './profileInfoRow.hbs';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { ProfileInfoRowProps } from './types';
 
 export class ProfileInfoRow extends Block {

@@ -1,7 +1,6 @@
 import template from './messagesFooter.hbs';
-import Block from '../../../../utils/Block';
+import Block from '../../../../utils/Block/Block';
 import { MessagesFooterProps } from './types';
-import { FormFieldInput } from '../../../../components/formFieldInput';
 import { Button } from '../../../../components/button';
 import MessagesController from '../../../../controllers/MessagesController';
 import { FormField } from '../../../../components/formField';
@@ -26,11 +25,12 @@ export class MessagesFooter extends Block {
       title: 'Отправить',
       type: 'button',
       events: {
-        click: () => {        
-          if(submitValidation(this.children))  { 
-          const values = parseData(this.children);
-          const data = Object.fromEntries(values);    
-          MessagesController.sendMessage(this.props.selectedChat!.id, data.message); }
+        click: () => {
+          if (submitValidation(this.children)) {
+            const values = parseData(this.children);
+            const data = Object.fromEntries(values);
+            MessagesController.sendMessage(this.props.selectedChat!.id, data.message);
+          }
         }
       }
     });

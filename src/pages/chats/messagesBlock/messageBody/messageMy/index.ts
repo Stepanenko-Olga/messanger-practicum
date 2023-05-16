@@ -1,16 +1,15 @@
 import template from './messageMy.hbs';
-import Block from '../../../../../utils/Block';
-import { MessageProps } from '../types';
+import Block from '../../../../../utils/Block/Block';
 
 
 export class MessageMy extends Block {
-  constructor(props: MessageProps) {
+  constructor(props: unknown ) {
     super('box', props);
   }
-   
+
 
   init() {
-    this.element?.classList.add('messages__body-my'); 
+    this.element?.classList.add('messages__body-my');
   }
 
   render() {

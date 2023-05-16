@@ -1,5 +1,5 @@
 import template from './profileExitRow.hbs';
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block/Block';
 import { ProfileExitRowProps } from './types';
 
 export class ProfileExitRow extends Block<ProfileExitRowProps> {

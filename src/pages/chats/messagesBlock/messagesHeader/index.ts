@@ -1,5 +1,5 @@
 import template from './messagesHeader.hbs';
-import Block from '../../../../utils/Block';
+import Block from '../../../../utils/Block/Block';
 import { MessagesHeaderProps } from './types';
 
 
@@ -9,7 +9,7 @@ export class MessagesHeader extends Block {
   }
 
   init() {
-    this.element?.classList.add('messages__header');     
+    this.element?.classList.add('messages__header');
   }
 
   render() {

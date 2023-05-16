@@ -1,4 +1,4 @@
-import Block from '../Block';
+import Block from '../Block/Block';
 import { BlockConstructable } from './types';
 import { isEqual, render } from './utils';
 
@@ -82,7 +82,7 @@ export class Router {
     this.history.forward();
   }
 
-  private getRoute(pathname: string) {
+  public getRoute(pathname: string) {
     return this.routes.find(route => route.match(pathname));
   }
 }

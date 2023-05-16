@@ -1,6 +1,6 @@
 import { FormField } from "../components/formField";
 import { FormFieldInput } from "../components/formFieldInput";
-import Block from "./Block";
+import Block from "./Block/Block";
 
 export const parseData = (props: Record<string, Block | Block[]>) => {
   let fields: FormField[] = [];

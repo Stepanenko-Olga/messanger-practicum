@@ -1,6 +1,6 @@
-import { EventBus } from './EventBus';
+import { EventBus } from '../EventBus';
 import { nanoid } from 'nanoid';
-import { isEqual } from './helpers/helpers'
+
 
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["_getChildrenAndProps", "init", "componentDidMount", 
@@ -124,7 +124,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate(_oldProps: P, _newProps: P) {
     //return !isEqual(oldProps, newProps);
     return true;
   }

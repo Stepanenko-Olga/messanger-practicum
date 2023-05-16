@@ -1,7 +1,7 @@
-import { Button } from '../../../components/button';
-import Block from '../../../utils/Block';
-import { State, withStore } from '../../../utils/Store/Store';
-import { AddChatModal } from './addChatModal';
+import Block from '../../../utils/Block/Block';
+import { withStore } from '../../../utils/Store/Store';
+import { State } from '../../../utils/Store/types';
+
 import { MessagesBody } from './messageBody';
 import template from './messagesBlock.hbs';
 import { MessagesFooter } from './messagesFooter';
@@ -19,12 +19,12 @@ export class MessagesBlockWithPops extends Block {
     this.element?.classList.add('messages');
     this.children.messagesHeader = this.createHeader(this.props);
     this.children.messagesBody = this.createMessages(this.props);
-    this.children.messagesFooter = this.createFooter(this.props);    
+    this.children.messagesFooter = this.createFooter(this.props);
 
 
   }
 
-  protected componentDidUpdate(oldProps: MessagesBlockProps, newProps: MessagesBlockProps): boolean {
+  protected componentDidUpdate(_oldProps: MessagesBlockProps, newProps: MessagesBlockProps): boolean {
     this.children.messagesBody = this.createMessages(newProps);
     this.children.messagesHeader = this.createHeader(newProps);
     this.children.messagesFooter = this.createFooter(newProps);

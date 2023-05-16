@@ -3,7 +3,7 @@ import { SigninData, SignupData, User } from './types';
 
 
 
-export class AuthAPI extends BaseAPI {
+export default class AuthAPI extends BaseAPI {
     constructor() {
         super('/auth');
     }
@@ -13,7 +13,7 @@ export class AuthAPI extends BaseAPI {
     }
 
 
-    signup(data: SignupData) {     
+    signup(data: SignupData) {
         return this.http.post('/signup', data);
     }
 
@@ -30,4 +30,4 @@ export class AuthAPI extends BaseAPI {
     delete = undefined;
 }
 
-export default new AuthAPI();
+

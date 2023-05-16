@@ -71,7 +71,7 @@ export class UserController {
 }
 
 export default new UserController();
-function then(arg0: (res: XMLHttpRequest) => any) {
+/* function _then(arg0: (res: XMLHttpRequest) => any) {
     throw new Error('Function not implemented.');
-}
+} */
 

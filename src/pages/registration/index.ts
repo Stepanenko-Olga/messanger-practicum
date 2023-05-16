@@ -1,5 +1,5 @@
 import template from './registration.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
 import { parseData } from '../../utils/parseFormData';

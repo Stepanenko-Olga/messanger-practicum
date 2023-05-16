@@ -2,9 +2,9 @@ import { UpdatePassword } from '../../api/UserApi/types';
 import { Button } from '../../components/button';
 import { FormField } from '../../components/formField';
 import UserController from '../../controllers/UserController';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { parseData } from '../../utils/parseFormData';
-import store from '../../utils/Store/Store';
+
 import { submitValidation } from '../../utils/validation';
 import template from './editPassword.hbs';
 
@@ -47,8 +47,7 @@ export class EditPassword extends Block {
     });
   }
 
-  onSubmit() {
-    console.log("ваваиыаи");
+  onSubmit() {  
     submitValidation(this.children);
     const values = parseData(this.children);
 

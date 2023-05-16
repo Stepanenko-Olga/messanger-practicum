@@ -1,4 +1,3 @@
-
 export enum WSTransportEvents {
     Connected = 'connected',
     Error = 'error',

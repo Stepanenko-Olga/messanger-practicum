@@ -1,5 +1,5 @@
 import template from './header.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { HeaderProps } from './types';
 
 export class Header extends Block<HeaderProps> {

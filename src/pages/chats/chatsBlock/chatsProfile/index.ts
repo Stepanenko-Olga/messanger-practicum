@@ -1,5 +1,5 @@
 import template from './chatsProfile.hbs';
-import Block from '../../../../utils/Block';
+import Block from '../../../../utils/Block/Block';
 import { Button } from '../../../../components/button';
 import { CreateChatModal } from './createChatModal';
 import { Link } from '../../../../components/link';

@@ -1,5 +1,5 @@
 import template from './error.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { ErrorProps } from './types';
 
 export class ErrorPage extends Block {

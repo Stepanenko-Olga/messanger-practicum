@@ -1,5 +1,5 @@
 import template from './chats.hbs';
-import Block from '../../utils/Block';
+import Block from '../../utils/Block/Block';
 import { ChatsBlock } from './chatsBlock';
 import { MessagesBlock } from './messagesBlock';
 import ChatsController from '../../controllers/ChatsController';
@@ -8,7 +8,7 @@ import store, { withStore } from '../../utils/Store/Store';
 
 export class ChatsPage extends Block {
   constructor() {
-    super('box');   
+    super('box');
   }
 
 
